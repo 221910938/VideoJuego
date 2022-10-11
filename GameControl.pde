@@ -53,6 +53,8 @@ class GameControl{
     switch(pantact){
       case PNINT: pnint.mouseControl(x,y,b);
                   break;
+      case PNCFG: pncfg.mouseControl(x,y,b);
+                  break;
       default:    if(mouseButton==LEFT)
                     gc.nextPant();
                   if(mouseButton==RIGHT)

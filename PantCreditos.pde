@@ -11,6 +11,6 @@ class PantCreditos{
     background(color(150,0,150));
     stroke(color(255,255,255));
     textAlign(CENTER,CENTER);
-    text("Pantalla de Creditos",400,400);
+    text(idi.mensaje(7),400,400);
   }
 }

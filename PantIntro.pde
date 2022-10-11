@@ -35,17 +35,11 @@ class PantIntro{
   }
   
   void mouseControl(int x, int y, int b){
-    if(btncfg.isClicked(x,y,b))
-      gc.setPantAct(PNCFG);
-    if(btncrd.isClicked(x,y,b))
-      gc.setPantAct(PNCRD);
-    if(btnscr.isClicked(x,y,b))
-      gc.setPantAct(PNSCR);
-    if(btngme.isClicked(x,y,b))
-      gc.setPantAct(PNGME);
-    if(btnins.isClicked(x,y,b))
-      gc.setPantAct(PNINS);
-    if(btnext.isClicked(x,y,b))
-      exit();
+    if(btncfg.isClicked(x,y,b)) gc.setPantAct(PNCFG);
+    if(btncrd.isClicked(x,y,b)) gc.setPantAct(PNCRD);
+    if(btnscr.isClicked(x,y,b)) gc.setPantAct(PNSCR);
+    if(btngme.isClicked(x,y,b)) gc.setPantAct(PNGME);
+    if(btnins.isClicked(x,y,b)) gc.setPantAct(PNINS);
+    if(btnext.isClicked(x,y,b)) exit();
   }
 }

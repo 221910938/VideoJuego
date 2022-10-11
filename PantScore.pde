@@ -11,6 +11,6 @@ class PantScore{
     background(color(150,150,150));
     stroke(color(255,255,255));
     textAlign(CENTER,CENTER);
-    text("Pantalla de Score",400,400);
+    text(idi.mensaje(12),400,400);
   }
 }

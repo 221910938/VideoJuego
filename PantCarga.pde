@@ -10,6 +10,6 @@ class PantCarga{
     background(color(150,0,0));
     stroke(color(255,255,255));
     textAlign(CENTER,CENTER);
-    text("Pantalla de Carga",400,400);
+    text(idi.mensaje(6),400,400);
   }
 }

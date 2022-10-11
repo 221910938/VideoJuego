@@ -15,13 +15,15 @@ final int IDIOMAENG=1;
 
 GameControl gc;
 Idiomas idi;
+ConfigFile cf;
 
 //sección de módulos principales
 void setup(){
   size(800,800);
   frameRate(60);
   surface.setTitle("Creación de Videojuegos 2022");
-  idi=new Idiomas(IDIOMAESP,14);
+  cf=new ConfigFile();
+  idi=new Idiomas(cf.lang,cf.ns);
   gc=new GameControl();
 }
 
@@ -37,6 +39,7 @@ void mouseReleased(){
   if(mouseButton==RIGHT)
     gc.prevPant();*/
   gc.mouseControl(mouseX,mouseY,mouseButton);  
+  
 }
 
 void keyReleased(){

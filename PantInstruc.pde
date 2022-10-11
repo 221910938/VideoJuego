@@ -11,6 +11,6 @@ class PantInstruc{
     background(color(0,150,150));
     stroke(color(255,255,255));
     textAlign(CENTER,CENTER);
-    text("Pantalla de Instrucciones",400,400);
+    text(idi.mensaje(10),400,400);
   }
 }

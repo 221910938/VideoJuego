@@ -10,6 +10,6 @@ class PantGame{
     background(color(0,0,150));
     stroke(color(255,255,255));
     textAlign(CENTER,CENTER);
-    text("Pantalla de Juego",400,400);
+    text(idi.mensaje(9),400,400);
   }
 }
