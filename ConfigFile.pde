@@ -9,6 +9,18 @@ String save;
 int lang;
 int ns;//numero de caracteres
 
+int velocidadHorizontalFondo;
+int velocidadVerticalFondo;
+
+int velocidadHorizontalFrente;
+int velocidadVerticalFrente;
+
+int velocidadHorizontalAscendentePersonaje;
+int velocidadVerticalAscendentePersonaje;
+
+int velocidadHorizontalDescendenteFrente;
+int velocidadVerticalDescendenteFrente;
+
 ConfigFile()
 {
     file = loadStrings("config.dat");
@@ -20,6 +32,17 @@ void loadConfig()
     for (int i = 0; i < file.length; ++i) {
         if (isData("language",i)) lang=loadData(i);
         if (isData("langstr",i)) ns=loadData(i);
+        if (isData("velocidadHorizontalFondo",i)) velocidadHorizontalFondo=loadData(i);
+        if (isData("velocidadVerticalFondo",i)) velocidadVerticalFondo=loadData(i);
+
+        if (isData("velocidadHorizontalFrente",i)) velocidadHorizontalFrente=loadData(i);
+        if (isData("velocidadVerticalFrente",i)) velocidadVerticalFrente=loadData(i);
+
+        if (isData("velocidadHorizontalAscendentePersonaje",i)) velocidadHorizontalAscendentePersonaje=loadData(i);
+        if (isData("velocidadVerticalAscendentePersonaje",i)) velocidadVerticalAscendentePersonaje=loadData(i);
+
+        if (isData("velocidadHorizontalDescendenteFrente",i)) velocidadHorizontalDescendenteFrente=loadData(i);
+        if (isData("velocidadVerticalDescendenteFrente",i)) velocidadVerticalDescendenteFrente=loadData(i);
     }
 }
 
@@ -39,6 +62,14 @@ void saveConfig(Idiomas i)
     save="";
     addSave("language",lang);
     addSave("langstr",ns);
+    addSave("velocidadHorizontalFondo",velocidadHorizontalFondo);
+    addSave("velocidadVerticalFondo",velocidadVerticalFondo);
+
+    addSave("velocidadHorizontalFrente",velocidadHorizontalFrente);
+    addSave("velocidadVerticalFrente",velocidadVerticalFrente);
+
+    addSave("velocidadHorizontalAscendentePersonaje",velocidadHorizontalAscendentePersonaje);
+    addSave("velocidadVerticalAscendentePersonaje",velocidadVerticalAscendentePersonaje);
     file=split(save,';');
     saveStrings("data/config.dat",file);
 }
