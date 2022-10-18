@@ -1,0 +1,17 @@
+#00btnConfiguracion=Configuracion
+#01btnCreditos=Creditos
+#02btnScores=Marcadores
+#03btnJugar=Jugar
+#04btnInstrucciones=Instrucciones del juego
+#05btnSalir=Salir del juego
+#06pntCarga=Pantalla de Carga
+#07pntCreditos=Pantalla de Creditos
+#08pntConfiguracion=Configuracion del juego
+#09pntJugar=Pantalla de juego
+#10pntIntrucciones=Pantalla de Instrucciones
+#11pntMenuPrincipal=Menu Principal
+#12pntMarcadores=Pantalla de Marcadores
+#13pntSalir=Salir de Juego
+#14btnIdioma=Español
+#15btnGuardar=Guardar
+#16btnCancelar=Salir
