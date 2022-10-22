@@ -11,6 +11,11 @@ class PantGame{
   Punto2D fg[];
 
   Punto2D per;
+
+  SpriteSet ssbg;
+  
+  SpriteSet ssfg;
+
   boolean dir;
   
   PantGame()
@@ -20,11 +25,16 @@ class PantGame{
 
     creaP2DArray(bg,400,400,800,0);
 
-    fg=new Punto2D[4];
+    fg=new Punto2D[2];
 
     creaP2DArray(fg,50,700,200,0);
 
     per=new Punto2D(240,600);
+
+    ssbg=new SpriteSet("sprites/bg/","bg",".png",2,800,false,0);
+
+    ssfg=new SpriteSet("sprites/fg/","fg",".png",2,800,false,0);
+
     dir=true;
   }
   
@@ -40,10 +50,11 @@ class PantGame{
   void planoFondo()
   {
     rectMode(CENTER);
+    imageMode(CENTER);
     stroke(0);
     fill(128,128,0);
 
-    graficarPlano(bg,800,800);
+    graficarPlano(bg,ssbg,800,800);
 
   }
   
@@ -58,9 +69,11 @@ class PantGame{
   void planoFrente()
   {
     rectMode(CENTER);
+    imageMode(CENTER);
     stroke(0);
     fill(200,200,0);
-    graficarPlano(fg,50,200);
+
+    graficarPlano(fg,ssfg,50,200);
   }
   
   void planoHUD()
@@ -76,7 +89,7 @@ class PantGame{
 
     muevePlano(bg,cf.velocidadHorizontalFondo,cf.velocidadVerticalFondo,-400,-1200);
 
-    muevePlano(fg,cf.velocidadHorizontalFrente,cf.velocidadVerticalFrente,-25,825);
+    muevePlano(fg,cf.velocidadHorizontalFrente,cf.velocidadVerticalFrente,-300,825);
 
     per.move(((dir)?cf.velocidadHorizontalAscendentePersonaje:cf.velocidadVerticalAscendentePersonaje),((dir)?cf.velocidadHorizontalDescendenteFrente:cf.velocidadVerticalDescendenteFrente));
 
@@ -88,6 +101,13 @@ class PantGame{
     for(int i=0;i<p.length;i++) p[i]=new Punto2D(xi+i*dx,yi+i*dy);
   }
 
+
+  /*
+  * Mover el objeto que se le pase
+  * @param p[] Punto2D[] el objeto a mover
+  * @param dx int velocidad horizontal
+  * @param dy int velocidad vertical
+  */
   void muevePlano(Punto2D p[], int dx, int dy, int li,int ld)
   {
     for(int i=0;i<p.length;i++) 
@@ -98,9 +118,13 @@ class PantGame{
     }
   }
 
-  void graficarPlano(Punto2D p[], int x, int y)
+  void graficarPlano(Punto2D p[],SpriteSet s, int x, int y)
   {
-    for(int i=0;i<p.length;i++) rect(p[i].getX(),p[i].getY(),x,y);
+    for(int i=0;i<p.length;i++)
+    {
+     image(s.getSprite(i),p[i].getX(),p[i].getY()); 
+    } 
+      
   }
 
 
