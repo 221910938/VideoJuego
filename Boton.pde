@@ -1,7 +1,7 @@
 //Modulo Boton
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 3 de octubre de 2021
-//fecha de ultima modificación: 3 de octubre de 2021
+//fecha de ultima modificación: 7 de octubre de 2021
 //comentario: la clase botoón permite indicar acciones dentro del juego, se usa 
 //para elegir opciones del menú principal y la mayoría de comandos del juego. 
 //Por su implementación solo contiene texto en su interior y un fondo sencillo de
@@ -15,7 +15,7 @@ class Boton{
   
   //constructor: los primeros dos parámetros son la posición, el segundo par sus medidas y el quinto
   //parámetro el índice del texto de idioma específico
-  Boton(int x,int y,int b, int a, int s){
+  Boton(int x,int y,int b,int a,int s){
     cx=x;
     cy=y;
     an=b;

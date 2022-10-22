@@ -1,9 +1,9 @@
 //Módulo PantIntro 
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 30 de septiembre de 2022
+//fecha de ultima modificación: 7 de octubre de 2022
 //comentario: Implementa la clase PantIntro, la cual se encargará de controlar la
 //pantalla de introducción del juego.
-
 class PantIntro{
   Boton btncfg;
   Boton btncrd;
@@ -35,11 +35,17 @@ class PantIntro{
   }
   
   void mouseControl(int x, int y, int b){
-    if(btncfg.isClicked(x,y,b)) gc.setPantAct(PNCFG);
-    if(btncrd.isClicked(x,y,b)) gc.setPantAct(PNCRD);
-    if(btnscr.isClicked(x,y,b)) gc.setPantAct(PNSCR);
-    if(btngme.isClicked(x,y,b)) gc.setPantAct(PNGME);
-    if(btnins.isClicked(x,y,b)) gc.setPantAct(PNINS);
-    if(btnext.isClicked(x,y,b)) exit();
+    if(btncfg.isClicked(x,y,b))
+      gc.setPantAct(PNCFG);
+    if(btncrd.isClicked(x,y,b))
+      gc.setPantAct(PNCRD);
+    if(btnscr.isClicked(x,y,b))
+      gc.setPantAct(PNSCR);
+    if(btngme.isClicked(x,y,b))
+      gc.setPantAct(PNGME);
+    if(btnins.isClicked(x,y,b))
+      gc.setPantAct(PNINS);
+    if(btnext.isClicked(x,y,b))
+      exit();
   }
 }

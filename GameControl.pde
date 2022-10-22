@@ -1,10 +1,10 @@
 //Módulo GameControl 
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 30 de septiembre de 2022
+//fecha de ultima modificación: 10 de octubre de 2022
 //comentario: Implementa la clase GameControl, la cual permitirá organizar la
 //operación del juego, simplificando al máximo el método draw en el proceso 
 //principal
-
 class GameControl{
   PantCarga pncrg;
   PantIntro pnint;
@@ -54,7 +54,7 @@ class GameControl{
       case PNINT: pnint.mouseControl(x,y,b);
                   break;
       case PNCFG: pncfg.mouseControl(x,y,b);
-                  break;
+                  break;            
       default:    if(mouseButton==LEFT)
                     gc.nextPant();
                   if(mouseButton==RIGHT)

@@ -1,6 +1,7 @@
 //Módulo PantCarga 
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 30 de septiembre de 2022
+//fecha de ultima modificación: 7 de octubre de 2022
 //comentario: Implementa la clase PantCarga, la cual se encargará de operar la 
 //pantalla de carga del juego.
 class PantCarga{
