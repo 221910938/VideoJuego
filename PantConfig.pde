@@ -8,11 +8,13 @@ class PantConfig{
   Boton btnidi;
   Boton btnsav;
   Boton btncnc;
+  Boton btngmd;
   
   PantConfig(){
     btnidi=new Boton(400,350,200,60,13);
     btnsav=new Boton(250,550,200,60,14);
     btncnc=new Boton(550,550,200,60,15);
+    btngmd=new Boton(400,450,200,60,16);
   }
   
   void display(){
@@ -23,14 +25,16 @@ class PantConfig{
     btnidi.display();
     btnsav.display();
     btncnc.display();
+    btngmd.display();
   }
   
   void mouseControl(int x,int y,int b){
-    if(btnidi.isClicked(x,y,b))
-      idi.setIdioma(((idi.getIdioma()==IDESP)?IDING:IDESP));
-    if(btnsav.isClicked(x,y,b))
-      cf.saveConfig(idi);
-    if(btncnc.isClicked(x,y,b))
-      gc.setPantAct(PNINT);
+    if(btnidi.isClicked(x,y,b)) idi.setIdioma(((idi.getIdioma()==IDESP)?IDING:IDESP));
+
+    if(btnsav.isClicked(x,y,b)) cf.saveConfig(idi);
+
+    if(btncnc.isClicked(x,y,b)) gc.setPantAct(PNINT);
+
+    if(btngmd.isClicked(x,y,b)) cf.gmode=!cf.gmode;
   }    
 }

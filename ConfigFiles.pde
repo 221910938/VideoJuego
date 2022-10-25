@@ -18,6 +18,15 @@ class ConfigFiles{
   int prdyu; //velocidad vertical de ascenso del personaje
   int prdxd; //velocidad horizontal de descenso del personaje
   int prdyd; //velocidad vertical de descenso del personaje
+  int nbg;
+  int nfg;
+  int bgli;
+  int bgld;
+  int fgli;
+  int fgld;
+  boolean gmode;
+
+
   
   ConfigFiles(){
     file=loadStrings("config.dat");
@@ -37,7 +46,18 @@ class ConfigFiles{
       if(isData("prdyu",i))    prdyu=loadData(i);
       if(isData("prdxd",i))    prdxd=loadData(i);
       if(isData("prdyd",i))    prdyd=loadData(i);
+      if(isData("nbg",i))      nbg=loadData(i);
+      if(isData("nfg",i))      nfg=loadData(i);
+      if(isData("bgli",i))     bgli=loadData(i);
+      if(isData("bgld",i))     bgld=loadData(i);
+      if(isData("fgli",i))     fgli=loadData(i);
+      if(isData("fgld",i))     fgld=loadData(i);
+      if(isData("gmode",i))    gmode=loadBoolData(i);
     }
+  }
+
+  boolean loadBoolData (int d){
+   return split(file[d],"=")[1].equals("ON");
   }
   
   boolean isData(String s, int d){
@@ -61,11 +81,22 @@ class ConfigFiles{
     addSave("prdyu",prdyu);
     addSave("prdxd",prdxd);
     addSave("prdyd",prdyd);
+    addSave("nbg",nbg);
+    addSave("nfg",nfg);
+    addSave("bgli",bgli);
+    addSave("bgld",bgld);
+    addSave("fgli",fgli);
+    addSave("fgld",fgld);
+    addSave("gmode",gmode);
     file=split(save,';');
     saveStrings("data/config.dat",file);
   }
   
   void addSave(String s,int d){
     save=save+"#"+s+"="+d+";";
+  }
+
+  void addSave(String s,boolean d){
+   save=save+"#"+s+"="+((d)?"ON":"OFF")+";";
   }
 }

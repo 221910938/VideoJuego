@@ -22,7 +22,7 @@ ConfigFiles cf;
 //sección de módulos principales
 void setup(){
   size(800,800);
-  frameRate(60);
+  frameRate(90);
   surface.setTitle("Creación de Videojuegos 2022");
   cf=new ConfigFiles();
   idi=new Idiomas(cf.lang,cf.ns);  //temporal hasta que se implemente archivo de config.
