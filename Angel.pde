@@ -1,7 +1,6 @@
 //Proyecto  
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 26 de septiembre de 2022
-//fecha de ultima modificación: 10 de octubre de 2022
 //comentario: Contiene los procesos iniciales del juego, adicionalmente envia a
 //los objetos de control las operaciones de entrada/salida básica
 
@@ -15,17 +14,25 @@ final int PNINS=5;
 final int PNSCR=6;
 final int IDESP=0;
 final int IDING=1;
+PFont letra;
+PImage imgIcon;
 GameControl gc;
 Idiomas idi;
 ConfigFiles cf;
+Bitacora bit;
 
 //sección de módulos principales
 void setup(){
   size(800,800);
   frameRate(90);
   surface.setTitle("Creación de Videojuegos 2022");
+  imgIcon=loadImage("sprites/per/per0.png");
+  surface.setIcon(imgIcon);
   cf=new ConfigFiles();
-  idi=new Idiomas(cf.lang,cf.ns);  //temporal hasta que se implemente archivo de config.
+  bit=new Bitacora(true); //Bitacora(cf.logact)
+  idi=new Idiomas(cf.lang,cf.ns);
+  letra=createFont("FiraCode Nerd Font",14);
+  textFont(letra);
   gc=new GameControl();
 }
 

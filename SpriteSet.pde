@@ -1,7 +1,7 @@
 //Modulo SpriteSet
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 20 de octubre de 2022
-//fecha de ultima modificación: 20 de octubre de 2022
+//fecha de ultima modificación: 29 de octubre de 2022
 //comentario: Controla un grupo de imágenes (sprites), puede crear una animación secuencial con dichas imágenes o funcionar
 //como un repositorio de imágenes para facilitar su uso.
 class SpriteSet{

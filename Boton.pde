@@ -34,6 +34,9 @@ class Boton{
     text(idi.mensaje(t),cx,cy);
   }
   
+  void setMessage(int m){
+    t=m;
+  }
   
   //manejador de evento, devuelve true si el clic ocurrió sobre él
   boolean isClicked(int x,int y, int b){

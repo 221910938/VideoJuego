@@ -1,5 +1,5 @@
 #language=0
-#langstr=17
+#langstr=18
 #bgdx=-3
 #bgdy=0
 #fgdx=-5
@@ -8,11 +8,13 @@
 #prdyu=-1
 #prdxd=-2
 #prdyd=1
+#gmode=ON
 #nbg=2
 #nfg=2
 #bgli=-400
 #bgld=1200
 #fgli=-100
 #fgld=900
-#gmode=OFF
+#nprc=6
+#prfc=6
 
