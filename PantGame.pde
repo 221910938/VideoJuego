@@ -11,9 +11,8 @@ class PantGame{
   int ffg[];
   SpriteSet ssbg;
   SpriteSet ssfg;
-  SpriteSet sspr;
+  Personaje per;
   PImage imghud;
-  Punto2D per;
   Dado dbg;
   Dado dfg;
   Reloj rlj;
@@ -30,9 +29,8 @@ class PantGame{
     creaP2DArray(fg,ffg,dfg,50,700,200,0);
     ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,6,false,0);
     ssfg=new SpriteSet("sprites/fg/","fg",".png",cf.nfg,6,false,0);
-    per=new Punto2D(150,700);
-    sspr=new SpriteSet("sprites/per/","per",".png",cf.nprc,cf.prfc,true,0);
-    imghud=loadImage("sprites/HUD/hud.png");
+    per=new Personaje();
+    imghud=loadImage("sprites/HUD/HUD.png");
     rlj=new Reloj();
     rlj.iniciaReloj();
     dir=true;
@@ -55,15 +53,7 @@ class PantGame{
   }
   
   void planoNivel(){
-    ellipseMode(RADIUS);
-    imageMode(CENTER);
-    if(cf.gmode)
-      sspr.display(per.getX(),per.getY(),200,200);
-    else{
-      stroke(0,120,0);
-      fill(0,200,0);
-      circle(per.getX(),per.getY(),75);
-    }  
+   per.display();
   }
   
   void planoFrente(){
@@ -78,9 +68,7 @@ class PantGame{
     rectMode(CENTER);
     imageMode(CENTER);
     if(cf.gmode){
-      tint(255,128);
-      image(imghud,400,60);
-      noTint();
+      image(imghud,400,40);
     }
     else{
       stroke(0);

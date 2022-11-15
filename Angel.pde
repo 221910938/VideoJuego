@@ -26,7 +26,7 @@ void setup(){
   size(800,800);
   frameRate(90);
   surface.setTitle("Creación de Videojuegos 2022");
-  imgIcon=loadImage("sprites/per/per0.png");
+  imgIcon=loadImage("sprites/per/movimiento/run/per0.png");
   surface.setIcon(imgIcon);
   cf=new ConfigFiles();
   bit=new Bitacora(true); //Bitacora(cf.logact)

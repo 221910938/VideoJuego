@@ -15,6 +15,8 @@
 #bgld=1200
 #fgli=-100
 #fgld=900
-#nprc=6
-#prfc=6
-
+#nprc=5
+#prfc=5
+#hpmax=100
+#hphit=25
+#hprcv=40

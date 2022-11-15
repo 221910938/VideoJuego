@@ -29,6 +29,10 @@ class ConfigFiles{
   
   boolean gmode;  //modo gráfico: true=sprites false=figuras
   
+  int hpmax;
+  int hphit;
+  int hprcv;
+
   ConfigFiles(){
     file=loadStrings("config.dat");
     loadConfig();
@@ -56,6 +60,9 @@ class ConfigFiles{
       if(isData("fgld",i))     fgld=loadData(i);
       if(isData("nprc",i))     nprc=loadData(i);
       if(isData("prfc",i))     prfc=loadData(i);
+      if(isData("hpmax",i))    hpmax=loadData(i);
+      if(isData("hphit",i))    hphit=loadData(i);
+      if(isData("hprcv",i))    hprcv=loadData(i);
     }
   }
   
@@ -93,6 +100,9 @@ class ConfigFiles{
     addSave("fgld",fgld);
     addSave("nprc",nprc);
     addSave("prfc",prfc);
+    addSave("hpmax",hpmax);
+    addSave("hphit",hphit);
+    addSave("hprcv",hprcv);
     file=split(save,';');
     saveStrings("data/config.dat",file);
   }
