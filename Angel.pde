@@ -1,7 +1,7 @@
 //Proyecto  
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 26 de septiembre de 2022
-//fecha de ultima modificación: 10 de noviembre de 2022
+//fecha de ultima modificación: 14 de noviembre de 2022
 //comentario: Contiene los procesos iniciales del juego, adicionalmente envia a
 //los objetos de control las operaciones de entrada/salida básica
 import ddf.minim.*;
@@ -19,6 +19,7 @@ final boolean MSCON=true;
 final boolean MSCOFF=false;
 PFont letra;
 PImage imgicon;
+PImage imgcoin;
 SpriteSet sspbg;
 PImage back;
 GameControl gc;
@@ -44,6 +45,7 @@ void setup(){
   idi=new Idiomas(cf.lang,cf.ns);
   letra=createFont("FiraCode Nerd Font",14);
   textFont(letra);
+  imgcoin=loadImage("sprites/coin/coin.png");
   gc=new GameControl();
   audio=new Minim(this);
   thread("loadAudio");

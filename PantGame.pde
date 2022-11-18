@@ -1,7 +1,7 @@
 //Módulo PantGame 
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 30 de septiembre de 2022
-//fecha de ultima modificación: 31 de octubre de 2022
+//fecha de ultima modificación: 14 de noviembre de 2022
 //comentario: Implementa la clase PantGame, la cual controla las acciones del 
 //juego.
 class PantGame{
@@ -12,6 +12,7 @@ class PantGame{
   SpriteSet ssbg;
   SpriteSet ssfg;
   Personaje per;
+  Coin coin;
   PImage imghud;
   Dado dbg;
   Dado dfg;
@@ -24,14 +25,17 @@ class PantGame{
     bg=new Punto2D[cf.nbg];
     fbg=new int[cf.nbg];
     creaP2DArray(bg,fbg,dbg,400,400,800,0);
+
     dfg=new Dado(cf.nfg);
     fg=new Punto2D[cf.nfg];
     ffg=new int[cf.nfg];
-    creaP2DArray(fg,ffg,dfg,100,675,200,0);
+    creaP2DArray(fg,ffg,dfg,100,700,500,0);
+
     ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,2,false,0);
     ssfg=new SpriteSet("sprites/fg/","fg",".png",cf.nfg,2,false,0);
-    per=new Personaje();
     imghud=loadImage("sprites/HUD/hud.png");
+    per=new Personaje();
+    coin=new Coin(500,700);
     rlj=new Reloj();
     rlj.iniciaReloj();
     dir=true;
@@ -60,7 +64,8 @@ class PantGame{
   }
   
   void planoNivel(){
-   per.display();
+    per.display();
+    coin.display();
   }
   
   void planoFrente(){
@@ -68,7 +73,7 @@ class PantGame{
     imageMode(CENTER);
     stroke(0);
     fill(200,200,0);
-    graficaPlano(fg,ssfg,ffg,200,250,true);
+    graficaPlano(fg,ssfg,ffg,500,50,true);
   }
   
   void planoHUD(){
@@ -82,13 +87,14 @@ class PantGame{
       fill(220,220,220);
       rect(400,60,800,120);
     }  
-    fill(0);
+    per.drawLifeBar(230,50);
     rlj.display(720,50);
   }
   
   void gameProgress(){
     muevePlano(bg,fbg,dbg,cf.bgdx,cf.bgdy,cf.bgli,cf.bgld);  
     muevePlano(fg,ffg,dfg,cf.fgdx,cf.fgdy,cf.fgli,cf.fgld); 
+    coin.move();
     rlj.controlReloj();
     //per.move(((dir)?cf.prdxu:cf.prdxd),((dir)?cf.prdyu:cf.prdyd));
     //if(per.getY()==500 || per.getY()==700) dir=!dir;  
@@ -114,9 +120,9 @@ class PantGame{
   void graficaPlano(Punto2D p[],SpriteSet s,int f[],int x,int y,boolean t){
     for(int i=0;i<p.length;i++)
       if(cf.gmode){
-        //if(t && p[i].getX()<=300 && p[i].getY()>=0) tint(255,128);
+        if(t && p[i].getX()<=300 && p[i].getY()>=0) tint(255,128);
         image(s.getSprite(f[i]),p[i].getX(),p[i].getY());
-        //if(t && p[i].getX()<=300 && p[i].getY()>=0) noTint();
+        if(t && p[i].getX()<=300 && p[i].getY()>=0) noTint();
       }  
       else
         rect(p[i].getX(),p[i].getY(),x,y);  

@@ -21,6 +21,7 @@
 #fntstd=22
 #fntbig=36
 #logact=ON
-#hpmax=100
+#hpmax=1000
 #hphit=25
 #hprcv=40
+#spdcn=7
