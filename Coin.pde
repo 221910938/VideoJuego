@@ -5,14 +5,14 @@
 //comentario: Coin implementa monedas, las cuales aportarán al puntaje del jugador
 class Coin{
   Punto2D pos;
+  Colisionador cls;
   boolean active;
-  int rot;
   boolean dir;
   
   Coin(int x,int y){
     pos=new Punto2D(x,y);
+    cls=new Colisionador(pos,37,new Punto2D(0,0),new Punto2D(0,0));
     active=true;
-    rot=0;
     dir=true;
   }
   
@@ -20,18 +20,25 @@ class Coin{
     imageMode(CENTER);
     ellipseMode(CENTER);
     if(active)
+    {
       if(cf.gmode)
-        image(imgcoin,pos.getX(),pos.getY(),75-rot,75);
+        image(imgcoin,pos.getX(),pos.getY(),75,75);
+
       else{
         fill(238,169,59);
         stroke(234,152,19);
         circle(pos.getX(),pos.getY(),37);
       }
+      cls.drawAreaColision();
+    }
+  }
+
+  void toggleActive(){
+    active=!active;
   }
   
   void move(){
     pos.setX(((pos.getX()>-75)?pos.getX()-cf.spdcn:900));
-    rot+=(dir)?-5:5;
-    if(rot<=-75 || rot>=0) dir=!dir;
+    cls.moverCol(pos);
   }
 }

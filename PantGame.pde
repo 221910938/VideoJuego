@@ -16,6 +16,7 @@ class PantGame{
   PImage imghud;
   Dado dbg;
   Dado dfg;
+  Dado dcoin;
   Reloj rlj;
   boolean dir;
   boolean rst;
@@ -34,8 +35,10 @@ class PantGame{
     ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,2,false,0);
     ssfg=new SpriteSet("sprites/fg/","fg",".png",cf.nfg,2,false,0);
     imghud=loadImage("sprites/HUD/hud.png");
+
     per=new Personaje();
     coin=new Coin(500,700);
+    dcoin=new Dado(3);
     rlj=new Reloj();
     rlj.iniciaReloj();
     dir=true;
@@ -65,7 +68,8 @@ class PantGame{
   
   void planoNivel(){
     per.display();
-    coin.display();
+    displayMonedas();
+    //coin.display();
   }
   
   void planoFrente(){
@@ -73,7 +77,7 @@ class PantGame{
     imageMode(CENTER);
     stroke(0);
     fill(200,200,0);
-    graficaPlano(fg,ssfg,ffg,500,50,true);
+    graficaPlano(fg,ssfg,ffg,100,50,true);
   }
   
   void planoHUD(){
@@ -88,6 +92,7 @@ class PantGame{
       rect(400,60,800,120);
     }  
     per.drawLifeBar(230,50);
+    per.drawScore(450,50);
     rlj.display(720,50);
   }
   
@@ -95,9 +100,18 @@ class PantGame{
     muevePlano(bg,fbg,dbg,cf.bgdx,cf.bgdy,cf.bgli,cf.bgld);  
     muevePlano(fg,ffg,dfg,cf.fgdx,cf.fgdy,cf.fgli,cf.fgld); 
     coin.move();
+    revisaColisiones();
     rlj.controlReloj();
     //per.move(((dir)?cf.prdxu:cf.prdxd),((dir)?cf.prdyu:cf.prdyd));
     //if(per.getY()==500 || per.getY()==700) dir=!dir;  
+  }
+
+  void revisaColisiones(){
+    if(per.cls.isColision(coin.cls)){
+      per.incrScore();
+      coin.toggleActive();
+      coin=new Coin(900,((dcoin.tirar()==1)?400:700));
+    }
   }
   
   void creaP2DArray(Punto2D p[],int f[],Dado d,int xi,int yi,int dx,int dy){
@@ -124,8 +138,9 @@ class PantGame{
         image(s.getSprite(f[i]),p[i].getX(),p[i].getY());
         if(t && p[i].getX()<=300 && p[i].getY()>=0) noTint();
       }  
-      else
+      else{
         rect(p[i].getX(),p[i].getY(),x,y);  
+      }
   }
   
   void resetGame(){
@@ -138,5 +153,9 @@ class PantGame{
     rst=true;
     gc.musicManager(MSCOFF);
     gc.setPantAct(PNINT);
+  }
+
+  void displayMonedas(){
+   coin.display();
   }
 }

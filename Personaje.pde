@@ -7,15 +7,19 @@
 class Personaje{
   SpriteSet sspr;
   Punto2D per;
+  Colisionador cls;
   PImage imglbr;
   PImage imghpc;
   int hp;
   int hpmax;
+  int score;
   
   Personaje(){
     per=new Punto2D(150,700);
     sspr=new SpriteSet("sprites/per/mov/run/","per",".png",cf.nprc,cf.prfc,true,0);
     hp=hpmax=cf.hpmax;
+    score=0;
+    cls=new Colisionador(per,70,new Punto2D(0,0),new Punto2D(250,800));
     imglbr=loadImage("sprites/per/lifebar/lbrbg.png");
     imghpc=loadImage("sprites/per/lifebar/hpc.png");
   }
@@ -30,6 +34,8 @@ class Personaje{
       fill(0,200,0);
       circle(per.getX(),per.getY(),75);
     }
+    cls.drawAreaColision();
+    cls.drawRangoColision();
   }
   
   void drawLifeBar(int x,int y){
@@ -56,4 +62,19 @@ class Personaje{
   void herir(){}
   
   void morir(){}
+
+  void drawScore(int x,int y)
+  {
+    textAlign(RIGHT,CENTER);
+    fill(0);
+    stroke(0);
+    textSize(24);
+    text(score,x,y);
+    textSize(24);
+  }
+
+  void incrScore()
+  {
+    score+=1;
+  }
 }

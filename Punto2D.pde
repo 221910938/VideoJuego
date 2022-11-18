@@ -11,6 +11,12 @@ class Punto2D{
     this.x=x;
     this.y=y;
   }
+
+  Punto2D(Punto2D p)
+  {
+    this.x=p.getX();
+    this.y=p.getY();
+  }
   
   int getX(){
     return x;
