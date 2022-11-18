@@ -1,7 +1,7 @@
 //Módulo GameControl 
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 30 de septiembre de 2022
-//fecha de ultima modificación: 10 de octubre de 2022
+//fecha de ultima modificación: 10 de noviembre de 2022
 //comentario: Implementa la clase GameControl, la cual permitirá organizar la
 //operación del juego, simplificando al máximo el método draw en el proceso 
 //principal
@@ -14,6 +14,7 @@ class GameControl{
   PantInstruc pnins;
   PantScore pnscr;
   int pantact;
+  boolean musicon;
   
   GameControl(){
     pncrg=new PantCarga();
@@ -24,6 +25,7 @@ class GameControl{
     pnins=new PantInstruc();
     pnscr=new PantScore();
     pantact=PNCRG;
+    musicon=false;
   }
   
   void display(){
@@ -51,30 +53,43 @@ class GameControl{
   
   void mouseControl(int x,int y, int b){
     switch(pantact){
+      case PNCRG: break;
+      case PNCRD: pncrd.mouseControl(x,y,b);
+                  break;
+      case PNINS: pnins.mouseControl(x,y,b);
+                  break;
+      case PNSCR: pnscr.mouseControl(x,y,b);
+                  break;            
       case PNINT: pnint.mouseControl(x,y,b);
                   break;
       case PNCFG: pncfg.mouseControl(x,y,b);
                   break;            
-      default:    if(mouseButton==LEFT)
-                    gc.nextPant();
-                  if(mouseButton==RIGHT)
-                    gc.prevPant();
+      case PNGME: pngme.mouseControl(x,y,b);
+    }
+  }
+  
+  void mouseControl(int x,int y){
+    switch(pantact){
+      case PNINT: pnint.mouseControl(x,y);
+                  break;
+      case PNCFG: pncfg.mouseControl(x,y);
+                  break;            
     }
   }
   
   void keyControl(){}
   
-  //esos métodos son temporales, solo para ilustrar el funcionamiento de cambio
-  //de pantalla
-  void nextPant(){
-    pantact++;
-    if(pantact>PNSCR)
-      pantact=PNCRG;
+  void musicManager(boolean s){
+    musicon=s;
+    playTrack((musicon?pantact:0));
   }
   
-  void prevPant(){
-    pantact--;
-    if(pantact<PNCRG)
-      pantact=PNSCR;
+  void playTrack(int t){
+    if(t==PNINT) mscintro.loop(); else {mscintro.pause(); mscintro.rewind();}
+    if(t==PNGME) mscgame.loop();  else {mscgame.pause();  mscgame.rewind();}
+  }
+  
+  boolean getMusicStatus(){
+    return musicon;
   }
 }

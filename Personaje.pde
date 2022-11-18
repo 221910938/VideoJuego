@@ -15,27 +15,27 @@ class Personaje
 
     Personaje()
     {
-        sspr=new SpriteSet("sprites/per/movimento/run/","per",".png",cf.nprc,cf.prfc,true,0);
+        sspr=new SpriteSet("sprites/per/mov/run/","per",".png",cf.nprc,cf.prfc,true,0);
         per=new Punto2D(150,700);
         hp=hpmax=cf.hpmax;
-        //imglbr=loadImage("sprites/per/lifebar/lbrbg.png");
-        //imghpc=loadImage("sprites/per/lifebar/hpc.png");
+        imglbr=loadImage("sprites/per/lifebar/lbrbg.png");
+        imghpc=loadImage("sprites/per/lifebar/hpc.png");
 
     }
 
     void display()
     {
-         ellipseMode(RADIUS);
-    imageMode(CENTER);
-    /*if(cf.gmode)
+      ellipseMode(RADIUS);
+      imageMode(CENTER);
+
+    if(cf.gmode)
       sspr.display(per.getX(),per.getY(),200,200);
     else{
       stroke(0,120,0);
       fill(0,200,0);
       circle(per.getX(),per.getY(),75);
-        }
-        */
-        drawLifeBar(150,30);
+    }
+      drawLifeBar(230,50);
     }
 
     void drawLifeBar(int x,int y)

@@ -28,7 +28,7 @@ class Coin{
             }else{
                 fill(0);
                 stroke(0);
-                circle(pos.getX());
+                circle(pos.getX(),pos.getY(),75);
             }
         }
     }

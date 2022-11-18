@@ -1,7 +1,7 @@
 //Modulo Temporizador
 //elaborado por: Angel Palacios Mirafuentes
-//fecha de creación: 31 de octubre de 2021
-//fecha de ultima modificación: 31 de octubre de 2021
+//fecha de creación: 31 de octubre de 2022
+//fecha de ultima modificación: 31 de octubre de 2022
 //comentario: El Temporizador, basado en frames, para controlar diversos eventos 
 //que requieran el paso de //cierta cantidad de tiempo, en su equivalente en 
 //frames. Como referencia, un frame en un esquema de 60fps equivale a 1.6 

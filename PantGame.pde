@@ -17,6 +17,7 @@ class PantGame{
   Dado dfg;
   Reloj rlj;
   boolean dir;
+  boolean rst;
   
   PantGame(){
     dbg=new Dado(cf.nbg);
@@ -26,17 +27,23 @@ class PantGame{
     dfg=new Dado(cf.nfg);
     fg=new Punto2D[cf.nfg];
     ffg=new int[cf.nfg];
-    creaP2DArray(fg,ffg,dfg,50,700,200,0);
-    ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,6,false,0);
-    ssfg=new SpriteSet("sprites/fg/","fg",".png",cf.nfg,6,false,0);
+    creaP2DArray(fg,ffg,dfg,100,675,200,0);
+    ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,2,false,0);
+    ssfg=new SpriteSet("sprites/fg/","fg",".png",cf.nfg,2,false,0);
     per=new Personaje();
-    imghud=loadImage("sprites/HUD/HUD.png");
+    imghud=loadImage("sprites/HUD/hud.png");
     rlj=new Reloj();
     rlj.iniciaReloj();
     dir=true;
+    rst=false;
   }
   
   void display(){
+    music();
+    if(rst){
+      resetGame();
+      rst=false;
+    }
     planoFondo();
     planoNivel();
     planoFrente();
@@ -68,7 +75,7 @@ class PantGame{
     rectMode(CENTER);
     imageMode(CENTER);
     if(cf.gmode){
-      image(imghud,400,40);
+      image(imghud,400,60);
     }
     else{
       stroke(0);
@@ -76,14 +83,13 @@ class PantGame{
       rect(400,60,800,120);
     }  
     fill(0);
-    rlj.display(650,60);
+    rlj.display(720,50);
   }
   
   void gameProgress(){
     muevePlano(bg,fbg,dbg,cf.bgdx,cf.bgdy,cf.bgli,cf.bgld);  
     muevePlano(fg,ffg,dfg,cf.fgdx,cf.fgdy,cf.fgli,cf.fgld); 
     rlj.controlReloj();
-    //bit.agregaDatosLn("Frame");
     //per.move(((dir)?cf.prdxu:cf.prdxd),((dir)?cf.prdyu:cf.prdyd));
     //if(per.getY()==500 || per.getY()==700) dir=!dir;  
   }
@@ -114,5 +120,17 @@ class PantGame{
       }  
       else
         rect(p[i].getX(),p[i].getY(),x,y);  
+  }
+  
+  void resetGame(){
+    rlj.resetReloj();
+    rlj.iniciaReloj();
+  }
+  
+  void mouseControl(int x,int y,int b){
+    rlj.detenReloj();
+    rst=true;
+    gc.musicManager(MSCOFF);
+    gc.setPantAct(PNINT);
   }
 }

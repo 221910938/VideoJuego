@@ -1,7 +1,7 @@
 //Modulo Reloj
 //elaborado por: Angel Palacios Mirafuentes
-//fecha de creación: 31 de octubre de 2021
-//fecha de ultima modificación: 31 de octubre de 2021
+//fecha de creación: 31 de octubre de 2022
+//fecha de ultima modificación: 4 de noviembre de 2022
 //comentario: Implementa un reloj en formato de segundos y minutos, se usará
 //para llevar el tiempo de juego
 class Reloj{
@@ -41,15 +41,19 @@ class Reloj{
         segs=0;
         mins++;
       }
-      bit.agregaDatosLn("Tiempo="+mins+":"+((segs<10)?"0":"")+segs);
+      bit.agregaDatosLn("Minutos="+mins+",Segundos="+segs);
       tmp.activate();
     }
   }
   
   void display(int x,int y){
     textAlign(CENTER,CENTER);
-    textSize(36);
+    textSize(cf.fntbig);
     text(((mins<10)?"0":"")+mins+":"+((segs<10)?"0":"")+segs/*+"."+msgs*/,x,y);
-    textSize(10);
+    textSize(cf.fntstd);
+  }
+  
+  String getTime(){
+    return ((mins<10)?"0":"")+mins+":"+((segs<10)?"0":"")+segs;
   }
 }

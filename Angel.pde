@@ -1,9 +1,10 @@
 //Proyecto  
 //elaborado por: Angel Palacios Mirafuentes
 //fecha de creación: 26 de septiembre de 2022
+//fecha de ultima modificación: 10 de noviembre de 2022
 //comentario: Contiene los procesos iniciales del juego, adicionalmente envia a
 //los objetos de control las operaciones de entrada/salida básica
-
+import ddf.minim.*;
 //sección de declaraciones globales
 final int PNCRG=0;
 final int PNINT=1;
@@ -14,26 +15,38 @@ final int PNINS=5;
 final int PNSCR=6;
 final int IDESP=0;
 final int IDING=1;
+final boolean MSCON=true;
+final boolean MSCOFF=false;
 PFont letra;
-PImage imgIcon;
+PImage imgicon;
+SpriteSet sspbg;
+PImage back;
 GameControl gc;
 Idiomas idi;
 ConfigFiles cf;
 Bitacora bit;
+Minim audio;
+AudioPlayer mscintro;
+AudioPlayer mscgame;
+AudioSample sfxclick;
 
 //sección de módulos principales
 void setup(){
   size(800,800);
-  frameRate(90);
+  frameRate(60);
   surface.setTitle("Creación de Videojuegos 2022");
-  imgIcon=loadImage("sprites/per/movimiento/run/per0.png");
-  surface.setIcon(imgIcon);
+  back=loadImage("sprites/bg/back.png");
+  imgicon=loadImage("sprites/per/mov/run/per0.png");
+  sspbg=new SpriteSet("sprites/per/mov/run/","per",".png",24,24,false,0);
+  surface.setIcon(imgicon);
   cf=new ConfigFiles();
-  bit=new Bitacora(true); //Bitacora(cf.logact)
+  bit=new Bitacora(cf.logact);
   idi=new Idiomas(cf.lang,cf.ns);
   letra=createFont("FiraCode Nerd Font",14);
   textFont(letra);
   gc=new GameControl();
+  audio=new Minim(this);
+  thread("loadAudio");
 }
 
 void draw(){
@@ -46,6 +59,28 @@ void mouseReleased(){
   gc.mouseControl(mouseX,mouseY,mouseButton);  
 }
 
+void mouseMoved(){
+  gc.mouseControl(mouseX,mouseY);  
+}
+
 void keyReleased(){
   
+}
+
+void loadAudio(){
+  gc.pncrg.msg=18;  //cargando efectos de sonido
+  sfxclick=audio.loadSample("sound/sfx/click.mp3");
+  sfxclick.setGain(0.9);
+  gc.pncrg.msg=19;  //cargando música
+  mscintro=audio.loadFile("sound/music/intro.mp3");
+  mscintro.setGain(0.07);
+  mscgame=audio.loadFile("sound/music/play.mp3");
+  mscgame.setGain(0.07);
+  gc.pncrg.msg=20;  //carga terminada
+  gc.pncrg.loading=false;  //cambiando pantalla
+}
+
+void music(){
+  if(!gc.getMusicStatus())
+    gc.musicManager(MSCON);
 }
