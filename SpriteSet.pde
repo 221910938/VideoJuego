@@ -73,6 +73,10 @@ class SpriteSet{
   PImage getSprite(int s){
     return sprt[s];
   }
+
+  int getNumbSprites(){
+    return size;
+  }
   
   //grafica el sprite activo y controla la animación
   void display(int x,int y,int w,int h){

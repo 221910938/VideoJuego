@@ -33,9 +33,9 @@ class Boton{
     stroke(255,255,255);
     if(cf.gmode) image(btn,cx,cy,an,al);
     //else rect(cx,cy,an,al);
-    fill(255);
+    fill(0,0,0);
     textAlign(CENTER,CENTER);
-    text(idi.mensaje(t),cx,cy);
+    text(idi.mensaje(t),cx,(cy-5));
   }
   
   void setMessage(int m){

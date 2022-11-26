@@ -17,9 +17,15 @@ class PantCarga{
   }
   
   void display(){
-    if(cf.gmode) background(back);
-    else background(color(150,150,150));
-    stroke(color(255,255,255));
+    if(cf.gmode)
+    {
+      background(back);
+    }
+    else 
+    {
+      background(color(150,150,150));
+    }
+    fill(0,0,0);
     textAlign(CENTER,CENTER);
     text(idi.mensaje(6),400,100);
     imageMode(CENTER);

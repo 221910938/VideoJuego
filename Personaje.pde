@@ -10,6 +10,7 @@ class Personaje{
   Colisionador cls;
   PImage imglbr;
   PImage imghpc;
+  boolean arma;
   int hp;
   int hpmax;
   int score;
@@ -36,9 +37,17 @@ class Personaje{
     }
     cls.drawAreaColision();
     cls.drawRangoColision();
+    changeArma();
+  }
+
+  void incrLife(int incr){
+    hp+=incr;
+    if(hp<=hpmax)
+      hp=hpmax;
   }
   
   void drawLifeBar(int x,int y){
+    hp=hp-2;
     rectMode(CENTER);
     imageMode(CENTER);
     if(cf.gmode){
@@ -77,4 +86,16 @@ class Personaje{
   {
     score+=1;
   }
+
+  void changeArma() {
+   if (keyPressed) {
+      if (key == 'Q'|| key == 'q') {
+        arma = !arma;
+        println("se presiono q");
+        bit.agregaDatosLn("cambio de arma");
+
+      } 
+   }
+  }
+
 }

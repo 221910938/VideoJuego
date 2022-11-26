@@ -14,15 +14,11 @@ class Colisionador
 
     Colisionador(Punto2D p, int r,Punto2D esi,Punto2D eid)
     {
-        println("Colisionador creado");
         pos= new Punto2D(p);
         rad=r;
         aaesi= new Punto2D(esi);
-        println("1");
         aaeid= new Punto2D(eid);
-        println("2");
         active=true;
-        println("Creado");
     }
 
     Colisionador(int x,int y,int r, int xi,int yi,int xd,int yd)

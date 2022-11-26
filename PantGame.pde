@@ -12,8 +12,12 @@ class PantGame{
   SpriteSet ssbg;
   SpriteSet ssfg;
   Personaje per;
+  Slime slime;
   Coin coin;
+  Pocion poc;
   PImage imghud;
+  PImage arco;
+  PImage espada;
   Dado dbg;
   Dado dfg;
   Dado dcoin;
@@ -35,12 +39,17 @@ class PantGame{
     ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,2,false,0);
     ssfg=new SpriteSet("sprites/fg/","fg",".png",cf.nfg,2,false,0);
     imghud=loadImage("sprites/HUD/hud.png");
+    arco=loadImage("sprites/HUD/arco.png");
+    espada=loadImage("sprites/HUD/espada.png");
 
     per=new Personaje();
+    slime=new Slime();
     coin=new Coin(500,700);
+    poc=new Pocion(300,700);
     dcoin=new Dado(3);
     rlj=new Reloj();
     rlj.iniciaReloj();
+
     dir=true;
     rst=false;
   }
@@ -68,8 +77,10 @@ class PantGame{
   
   void planoNivel(){
     per.display();
+    slime.display();
     displayMonedas();
     //coin.display();
+    poc.display();
   }
   
   void planoFrente(){
@@ -85,6 +96,11 @@ class PantGame{
     imageMode(CENTER);
     if(cf.gmode){
       image(imghud,400,60);
+      if (per.arma){
+        image(arco, 480, 55);
+      }else {
+        image(espada, 480, 55);
+      }
     }
     else{
       stroke(0);
@@ -92,7 +108,7 @@ class PantGame{
       rect(400,60,800,120);
     }  
     per.drawLifeBar(230,50);
-    per.drawScore(450,50);
+    per.drawScore(420,50);
     rlj.display(720,50);
   }
   
@@ -100,10 +116,9 @@ class PantGame{
     muevePlano(bg,fbg,dbg,cf.bgdx,cf.bgdy,cf.bgli,cf.bgld);  
     muevePlano(fg,ffg,dfg,cf.fgdx,cf.fgdy,cf.fgli,cf.fgld); 
     coin.move();
+    poc.move();
     revisaColisiones();
-    rlj.controlReloj();
-    //per.move(((dir)?cf.prdxu:cf.prdxd),((dir)?cf.prdyu:cf.prdyd));
-    //if(per.getY()==500 || per.getY()==700) dir=!dir;  
+    rlj.controlReloj(); 
   }
 
   void revisaColisiones(){
@@ -111,6 +126,12 @@ class PantGame{
       per.incrScore();
       coin.toggleActive();
       coin=new Coin(900,((dcoin.tirar()==1)?400:700));
+    }
+
+    if(per.cls.isColision(poc.cls)){
+      per.incrLife(10);
+      poc.toggleActive();
+      poc=new Pocion(900,((dcoin.tirar()==1)?400:700));
     }
   }
   
