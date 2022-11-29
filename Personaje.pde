@@ -28,9 +28,9 @@ class Personaje{
   void display(){
     ellipseMode(RADIUS);
     imageMode(CENTER);
-    if(cf.gmode)
+    if(cf.gmode){
       sspr.display(per.getX(),per.getY(),200,200);
-    else{
+    }else{
       stroke(0,120,0);
       fill(0,200,0);
       circle(per.getX(),per.getY(),75);
@@ -47,7 +47,7 @@ class Personaje{
   }
   
   void drawLifeBar(int x,int y){
-    hp=hp-2;
+    herir(2);
     rectMode(CENTER);
     imageMode(CENTER);
     if(cf.gmode){
@@ -68,7 +68,11 @@ class Personaje{
   
   void disparar(){}
   
-  void herir(){}
+  void herir(int x){
+    hp=hp-x;
+    if(hp<=0)
+      hp=0;
+  }
   
   void morir(){}
 

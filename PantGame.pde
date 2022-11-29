@@ -34,7 +34,7 @@ class PantGame{
     dfg=new Dado(cf.nfg);
     fg=new Punto2D[cf.nfg];
     ffg=new int[cf.nfg];
-    creaP2DArray(fg,ffg,dfg,100,700,500,0);
+    creaP2DArray(fg,ffg,dfg,100,100,500,0);
 
     ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,2,false,0);
     ssfg=new SpriteSet("sprites/fg/","fg",".png",cf.nfg,2,false,0);
@@ -88,7 +88,8 @@ class PantGame{
     imageMode(CENTER);
     stroke(0);
     fill(200,200,0);
-    graficaPlano(fg,ssfg,ffg,100,50,true);
+    //arbol y piedra al azar
+    graficaPlano(fg,ssfg,ffg,300,600,false);
   }
   
   void planoHUD(){
@@ -117,6 +118,7 @@ class PantGame{
     muevePlano(fg,ffg,dfg,cf.fgdx,cf.fgdy,cf.fgli,cf.fgld); 
     coin.move();
     poc.move();
+    slime.mover();
     revisaColisiones();
     rlj.controlReloj(); 
   }
@@ -156,7 +158,7 @@ class PantGame{
     for(int i=0;i<p.length;i++)
       if(cf.gmode){
         if(t && p[i].getX()<=300 && p[i].getY()>=0) tint(255,128);
-        image(s.getSprite(f[i]),p[i].getX(),p[i].getY());
+        image(s.getSprite(f[i]),p[i].getX(),p[i].getY(),x,y);
         if(t && p[i].getX()<=300 && p[i].getY()>=0) noTint();
       }  
       else{
