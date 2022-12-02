@@ -15,6 +15,8 @@ class PantGame{
   Slime slime;
   Coin coin;
   Pocion poc;
+  Item arbol;
+  Item roca;
   PImage imghud;
   PImage arco;
   PImage espada;
@@ -31,10 +33,8 @@ class PantGame{
     fbg=new int[cf.nbg];
     creaP2DArray(bg,fbg,dbg,400,400,800,0);
 
-    dfg=new Dado(cf.nfg);
-    fg=new Punto2D[cf.nfg];
-    ffg=new int[cf.nfg];
-    creaP2DArray(fg,ffg,dfg,100,100,500,0);
+    arbol= new Item("fg0.png",700,600,450,350);
+    roca= new Item("fg1.png",200,700,250,200);
 
     ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,2,false,0);
     ssfg=new SpriteSet("sprites/fg/","fg",".png",cf.nfg,2,false,0);
@@ -81,6 +81,8 @@ class PantGame{
     displayMonedas();
     //coin.display();
     poc.display();
+    arbol.display();
+    roca.display();
   }
   
   void planoFrente(){
@@ -88,8 +90,6 @@ class PantGame{
     imageMode(CENTER);
     stroke(0);
     fill(200,200,0);
-    //arbol y piedra al azar
-    graficaPlano(fg,ssfg,ffg,300,600,false);
   }
   
   void planoHUD(){
@@ -114,11 +114,14 @@ class PantGame{
   }
   
   void gameProgress(){
-    muevePlano(bg,fbg,dbg,cf.bgdx,cf.bgdy,cf.bgli,cf.bgld);  
-    muevePlano(fg,ffg,dfg,cf.fgdx,cf.fgdy,cf.fgli,cf.fgld); 
+    muevePlano(bg,fbg,dbg,cf.bgdx,cf.bgdy,cf.bgli,cf.bgld);
     coin.move();
     poc.move();
     slime.mover();
+
+    roca.mover();
+    arbol.mover();
+
     revisaColisiones();
     rlj.controlReloj(); 
   }

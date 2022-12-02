@@ -70,8 +70,10 @@ class Personaje{
   
   void herir(int x){
     hp=hp-x;
-    if(hp<=0)
+    if(hp<=0){
       hp=0;
+      gc.setPantAct(5);
+    }
   }
   
   void morir(){}

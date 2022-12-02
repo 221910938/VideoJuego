@@ -12,7 +12,7 @@ class Pocion{
   
   Pocion(int x,int y){
     pocion=new Punto2D(x,y);
-    imagePocion = loadImage("sprites/pocion/pocionImg.png");
+    imagePocion = loadImage("sprites/pocion/apple.png");
     cls=new Colisionador(pocion,37,new Punto2D(0,0),new Punto2D(0,0));
     active=true;
     dir=true;
