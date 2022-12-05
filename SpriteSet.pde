@@ -1,7 +1,7 @@
 //Modulo SpriteSet
-//elaborado por: Angel Palacios Mirafuentes
+//elaborado por: Rubén Dario Hernandez Mendo
 //fecha de creación: 20 de octubre de 2022
-//fecha de ultima modificación: 29 de octubre de 2022
+//fecha de ultima modificación: 24 de noviembre de 2022
 //comentario: Controla un grupo de imágenes (sprites), puede crear una animación secuencial con dichas imágenes o funcionar
 //como un repositorio de imágenes para facilitar su uso.
 class SpriteSet{
@@ -16,6 +16,8 @@ class SpriteSet{
   int spr;        //indica cuál es el sprite "activo" 
   boolean onan;   //indica si la animación está activa
   boolean eqtm;   //indica si el SpriteSet tiene un solo tiempo o múltiple
+  boolean onet;   //indica si la animación está activa solo una vez
+  boolean endot;  //indica cuando la animación de una sola vez termina.
   
   //constructor para SpriteSets con tiempo único para todos los sprites.
   //NOTA: una vez establecido, no es prudente cambiar esto
@@ -56,8 +58,11 @@ class SpriteSet{
     if(frc==(!eqtm?times[spr]:frl)){
       if(spr<size-1)
         spr++;
-      else
+      else{
         spr=0;
+        if(onet)
+          endot=true;
+      }  
       frc=0;
     }
     else
@@ -72,10 +77,6 @@ class SpriteSet{
   //devuelve el sprite activo
   PImage getSprite(int s){
     return sprt[s];
-  }
-
-  int getNumbSprites(){
-    return size;
   }
   
   //grafica el sprite activo y controla la animación
@@ -118,5 +119,14 @@ class SpriteSet{
   //conmuta la animación entre activa/inactiva
   void toggleAnimacion(){
     onan=!onan;
+  }
+  
+  void activateOneTime(){
+    onet=true;
+    endot=false;
+  }
+  
+  boolean isEndOnTime(){
+    return endot;
   }
 }

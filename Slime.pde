@@ -7,15 +7,22 @@ class Slime
     Colisionador colisionadorSlime;
     boolean active;
 
-    Slime()
+    Slime(int x,int y)
     {
       active=true;
-      slime=new Punto2D(500,700);
+      slime=new Punto2D(x,y);
       imgSlime= loadImage("sprites/enemies/slime/slime0.png");
       imagenesSlime=new SpriteSet("sprites/enemies/slime/","slime",".png",25,1,true,0);
       numeroImagenSlime=new int[25];
       colisionadorSlime=new Colisionador(slime,50,new Punto2D(0,0),new Punto2D(0,0));
     }
+
+    void resetBomb(){
+    active=true;
+    colisionadorSlime.activate();
+    slime.setX(975);
+    slime.setY(700);
+  }
 
     void display(){
       ellipseMode(RADIUS);
@@ -32,6 +39,11 @@ class Slime
       colisionadorSlime.drawAreaColision();
       }
     }
+
+     void toggleActive(){
+    active=!active;
+  }
+  
 
     void mover(){
     slime.setX(((slime.getX()>-75)?slime.getX()-cf.spdcn:900));

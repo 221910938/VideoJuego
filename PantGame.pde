@@ -43,7 +43,7 @@ class PantGame{
     espada=loadImage("sprites/HUD/espada.png");
 
     per=new Personaje();
-    slime=new Slime();
+    slime=new Slime(500,700);
     coin=new Coin(500,700);
     poc=new Pocion(300,700);
     dcoin=new Dado(3);
@@ -115,15 +115,23 @@ class PantGame{
   
   void gameProgress(){
     muevePlano(bg,fbg,dbg,cf.bgdx,cf.bgdy,cf.bgli,cf.bgld);
+
     coin.move();
+
     poc.move();
+
     slime.mover();
 
     roca.mover();
+
     arbol.mover();
 
     revisaColisiones();
+
     rlj.controlReloj(); 
+
+    per.controlMov();
+
   }
 
   void revisaColisiones(){
@@ -138,6 +146,13 @@ class PantGame{
       poc.toggleActive();
       poc=new Pocion(900,((dcoin.tirar()==1)?400:700));
     }
+
+    if(per.cls.isColision(slime.colisionadorSlime)){
+      per.herir();
+      slime.toggleActive();
+      slime=new Slime(850,700);
+    }
+
   }
   
   void creaP2DArray(Punto2D p[],int f[],Dado d,int xi,int yi,int dx,int dy){
@@ -172,6 +187,9 @@ class PantGame{
   void resetGame(){
     rlj.resetReloj();
     rlj.iniciaReloj();
+    per.resetPer();
+    slime.resetBomb();
+    poc.resetCure();
   }
   
   void mouseControl(int x,int y,int b){
@@ -183,5 +201,19 @@ class PantGame{
 
   void displayMonedas(){
    coin.display();
+  }
+
+  void keyControl(char k){
+    if(!per.onjmp && !per.onfal)
+      switch(k){
+        case 'w':
+        case 'W': per.saltar();
+                  break;
+        case 's':
+        case 'S': per.caer();
+                  break;
+        case 'q': per.changeArma();
+                  break;
+      }
   }
 }

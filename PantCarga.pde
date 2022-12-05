@@ -11,7 +11,7 @@ class PantCarga{
   boolean loading;
   
   PantCarga(){
-    ssload=new SpriteSet("sprites/per/mov/run/","per",".png",cf.nprc,cf.prfc,true,0);
+    ssload=new SpriteSet("sprites/per/movement/run/","per",".png",cf.nprc,cf.prfc,true,0);
     tmpidle=new Temporizador(180);
     loading=true;
   }

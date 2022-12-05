@@ -35,6 +35,14 @@ class Pocion{
     }
   }
 
+  void resetCure(){
+    active=true;
+    cls.activate();
+    cls.activate();
+    pocion.setX(975);
+    pocion.setY(300);
+  }
+
   void toggleActive(){
     active=!active;
   }

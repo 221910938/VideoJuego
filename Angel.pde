@@ -15,6 +15,11 @@ final int PNINS=5;
 final int PNSCR=6;
 final int IDESP=0;
 final int IDING=1;
+final int STRUN=0;
+final int STJMP=1;
+final int STFAL=2;
+final int STHIT=3;
+final int STDIE=4;
 final boolean MSCON=true;
 final boolean MSCOFF=false;
 PFont letra;
@@ -37,8 +42,8 @@ void setup(){
   frameRate(60);
   surface.setTitle("Creación de Videojuegos 2022");
   back=loadImage("sprites/bg/back.png");
-  imgicon=loadImage("sprites/per/mov/run/per0.png");
-  sspbg=new SpriteSet("sprites/per/mov/run/","per",".png",24,24,false,0);
+  imgicon=loadImage("sprites/per/movement/run/per0.png");
+  sspbg=new SpriteSet("sprites/per/movement/run/","per",".png",24,24,false,0);
   surface.setIcon(imgicon);
   cf=new ConfigFiles();
   bit=new Bitacora(cf.logact);
@@ -66,8 +71,9 @@ void mouseMoved(){
 }
 
 void keyReleased(){
-  
+  gc.keyControl(key);
 }
+
 
 void loadAudio(){
   gc.pncrg.msg=18;  //cargando efectos de sonido

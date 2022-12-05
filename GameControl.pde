@@ -77,7 +77,11 @@ class GameControl{
     }
   }
   
-  void keyControl(){}
+  void keyControl(char k){
+    switch(pantact){
+      case PNGME: pngme.keyControl(k);
+    }
+  }
   
   void musicManager(boolean s){
     musicon=s;
