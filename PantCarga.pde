@@ -1,31 +1,27 @@
 //Módulo PantCarga 
-//elaborado por: Angel Palacios Mirafuentes
+//elaborado por: Rubén Dario Hernandez Mendo
 //fecha de creación: 30 de septiembre de 2022
-//fecha de ultima modificación: 14 de noviembre de 2022
+//fecha de ultima modificación: 5 de diciembre de 2022
 //comentario: Implementa la clase PantCarga, la cual se encargará de operar la 
 //pantalla de carga del juego.
 class PantCarga{
-  SpriteSet ssload;
-  Temporizador tmpidle;
-  int msg;
-  boolean loading;
+  SpriteSet ssload;      //animación del corredor
+  Temporizador tmpidle;  //tiempo de espera tras el final de la carga
+  int msg;               //mensaje específico de progreso
+  boolean loading;       //indica si la carga está en proceso
   
+  //Constructor: carga la animación del corredor y prepara la carga de recursos
   PantCarga(){
     ssload=new SpriteSet("sprites/per/movement/run/","per",".png",cf.nprc,cf.prfc,true,0);
     tmpidle=new Temporizador(180);
     loading=true;
   }
   
+  //muestra el estado actual del proceso de carga
   void display(){
-    if(cf.gmode)
-    {
-      background(back);
-    }
-    else 
-    {
-      background(color(150,150,150));
-    }
-    fill(0,0,0);
+    if(cf.gmode) background(gc.imgfondo);
+    else background(150,0,0);
+    stroke(255);
     textAlign(CENTER,CENTER);
     text(idi.mensaje(6),400,100);
     imageMode(CENTER);

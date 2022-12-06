@@ -1,7 +1,7 @@
 //Modulo SpriteSet
 //elaborado por: Rubén Dario Hernandez Mendo
 //fecha de creación: 20 de octubre de 2022
-//fecha de ultima modificación: 24 de noviembre de 2022
+//fecha de ultima modificación: 5 de diciembre de 2022
 //comentario: Controla un grupo de imágenes (sprites), puede crear una animación secuencial con dichas imágenes o funcionar
 //como un repositorio de imágenes para facilitar su uso.
 class SpriteSet{
@@ -60,8 +60,10 @@ class SpriteSet{
         spr++;
       else{
         spr=0;
-        if(onet)
+        if(onet){
+          onan=false;
           endot=true;
+        }  
       }  
       frc=0;
     }
@@ -121,11 +123,14 @@ class SpriteSet{
     onan=!onan;
   }
   
+  //activa la animación de una sola ocasión
   void activateOneTime(){
     onet=true;
     endot=false;
+    onan=true;
   }
   
+  //devuelve si la animación de una sola ocasión ha terminado
   boolean isEndOnTime(){
     return endot;
   }

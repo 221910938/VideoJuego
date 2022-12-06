@@ -1,0 +1,394 @@
+Este documento comienza a partir de la versión 4. Se actualizará 
+con cada nueva versión que se comparta.
+NOTAS:
+* La indicación (P) señala una actividad pendiente de realizar para
+la versión aun no terminada de agregados.
+___________________________________________________________________
+Agregados 2
+* Se implementa una pantalla de Pausa, con la cual se puede 
+detener el juego, pero también salir a la pantalla principal.
+* Se implementa el contenido de la pantalla de instrucciones, 
+donde se explica al jugador cómo se controla al pesonaje.
+* Se implementa en la Pantalla de Marcadores un proceso de cambio 
+de color del texto de forma gradual, esto mediante la función 
+lerpColor.
+* Se crea y reemplaza el video de créditos. Se corrige un error en 
+la reproducción en bucle del video, cambiando la instrucción loop,
+que por alguna razón no funciona con el video específico, 
+controlando de forma manual el parado del video y reinicio.
+*Se incluyen dos versiones del video de créditos, una en resolución
+800x532 (conservando la relación de aspecto para encajar en la
+pantalla) y la otra en 1280x720 para mostrarlo a amigos :)
+* Se termina de documentar el código del juego.
+*Se agregaron factores en ConfigFile, específicamente para el
+ajuste de volumen de música y número de puntajes tope.
+* Se optimizaron todos los fill y stroke. En todos los colores se
+eliminó la llamada a color(r,g,b) y se cambió por r,g,b y en los 
+tonos de gris se dejaron con solo un valor.
+___________________________________________________________________
+Agregados 1
+* Se implementa una característica de nombre del jugador, a tres
+letras, en la clase PantConfig. Esto para el registro de puntajes
+máximos.
+* Se agrega un selector de dificultad en PantConfig y se aplica
+su efecto en el juego, específicamente en niveles de daño y 
+curación.
+* Se agrega el nombre del jugador como factor configurable y los
+valores asociados a la dificultad.
+* Se implementó la clase TopScores, para almacenar los puntajes más
+altos de las partidas. Esto permitirá insertar los nuevos 
+marcadores que logren colarse al top 10. Con ello se modificó 
+PantScore para desplegar esta información.
+* Se agregó el control de colisiones para el modo gráfico básico.
+Esto requirió reorganizar el método animationStatus en la clase
+Personaje.
+* Se desactiva el colisionador del personaje mientras este se
+encuentre en la animación de herida, reactivándose cuando esta 
+termine.
+* Se corrigió el bug que,una vez terminado el juego, si el jugador
+introducía una acción de salto o caer, el juego no terminaba porque 
+se interumpía la animación de muerte y con ello no se alcanzaba el
+cambio de pantalla, se corrigió condicionando la entrada de datos
+mientras el personaje esté con vida.
+* Se corrigió que la animación de explosión y de uso de curador no
+se ejecutaba una sola vez, desactivando onan en la clase SpriteSet
+y condicionando esto en las clases Bomba y Curador.
+___________________________________________________________________
+Notas sobre lo que sigue
+* A partir de aquí los equipos implementarán los cambios que se 
+hayan propuesto para hacer más único su propio proyecto.
+* Seguirán lanzándose versiones con más características, pero solo
+con carácter ilustrativo.
+___________________________________________________________________
+Versión 17 Juego Base terminado
+* Se implementó la clase Bomba, con la cual el personaje puede ser
+herido y eventualmente morir.
+* Se implementó la clase Curador, con la cual el personaje puede
+recuperar salud y mantenerse en el juego.
+* En Personaje se implementaron los efectos de ser herido y morir,
+además de hacer el cambio de pantalla en caso de morir y terminar
+la partida.
+* En PantGame se implementaron varias cosas:
+- Se implementó la animación de golpes recibidos y muerte.
+- Se implementó un control de animación que respete la trayectoria
+del personaje si se encuentra saltando o cayendo mientras recibe
+un golpe o muere.
+- Se implementaron efectos de sonido variados.
+-Se implementó detener el movimiento del juego si el peronaje muere.
+* En el módulo principal se agregaron los archivos de efectos de 
+sonido que faltaban.
+* En SpriteSet se implementó un mecanismo de animación de única vez,
+esto para hacer funcionar las animaciones de explosión y curación.
+* En las bombas y Curadores se implementó un mecanismo de reset, con
+él se puede reinicar un juego también.
+* DEBIDO A LO QUE SE DEBE HACER, ES POSIBLE QUE NO SEA HECHO EN 
+CLASE, PERO VIENE EN LA VERSIÓN. En PantCreditos se implementó un 
+video, para ello debe agregarse en el módulo principal la librería 
+Video con "import processing.video.*;". Se debe incluir objetos de
+la clase Movie para utilizarlos, se cargan en el hilo de carga y un
+método llamado movieEvent para controlar la lectura del video para
+cuando se muestre en pantalla.
+___________________________________________________________________
+Versión 16 Saltar Caer y Plataforma
+* Se implementa un medio de control de las acciones del personaje
+* Se definen constantes en el módulo principal para identificar el
+estado en el que se encuentra el personaje.
+* Se implementan cuatro objetos SpriteSet para las animaciones de 
+salto, caída, golpe recibido y muerte. Aunque solo se diseñaron los
+conjuntos de imágenes para salto y caída.
+* Se implementan los factores configurables de salto máximo, 
+coordenada de caída máxima, así como velocidades de salto y caída.
+* Se crearon las imágenes para las animaciones de salto y caída.
+* Se implementó la clase Plataforma, la cual permite que personaje
+pueda alcanzar mayores alturas. El personaje entonces puede saltar
+hacia la plataforma y después estando sobre ella, hacer un segundo
+salto. Al momento las plataformas aparecen en una sola altura y
+con intervalos de espaciado predefinidos por el parámetro pltspc
+*Se activó de nuevo el control con teclado, específicamente para
+las acciones de salto (teclas w,W y barra espaciadora) y caída
+(teclas s,S). Estas solo funcionarán cuando el personaje no se 
+encuentre saltando o cayendo.
+* Se definieron los parámetros para controlar el tamaño y velocidad
+de las plataformas.
+*Cuando el personaje cae de un salto, este termina en el nivel más
+bajo.
+*Se implementó el parámetro datad, el cual activa o desactiva la
+visibilidad de las cajas de colisión y fronteras de altura para los
+saltos y caídas.
+*Se recortó el audio del intro del juego, esto para que la canción
+comience lo más pronto posible.
+___________________________________________________________________
+Versión 15 Colisiones y Más monedas
+* Se implementó la clase Colisionador, la cual permitirá que los 
+objetos puedan interactuar entre ellos. Este tipo de colisionador
+funciona por la estrategia de áreas en forma de círculo desde el 
+centro de cada objeto con potencial de colisión.
+* Se agregaron cinco parámetros configurables, relacionados con el
+tamaño de los colisionadores del personaje y las monedas. Así como
+factores relacionados con el número de monedas en pantalla, de su
+espaciado y el puntaje obtenido por tocar una moneda.
+* Se implementó entonces un ArrayList de monedas y el control de
+las mismas tanto en su graficado, movimiento y control de 
+colisiones.
+* Adicionalmente el colisionar con monedas agrega un efecto de 
+sonido, tipo caja registradora.
+* También se grafican de forma temporal, figuras solo con borde 
+para visualizar las áreas que participan de los procesos de 
+colisión, tanto áreas activas (con lo cual no es necesario procesar
+todas las posibles interacciones) como las áreas de colisión, donde
+sí podría ocurrir algo.
+___________________________________________________________________
+Versión 14 Personaje
+* Se implementaron las Clases Personaje y Coin, para independizar
+el control de estos elementos y reorganizar lo hecho por la clase
+PantGame.
+* En el caso de Personaje ahora ahí se controlarán sus datos, como
+son posición, vida, y sus animaciones. También para ello se 
+hicieron cambios en la estructura de carpetas, con lo cual será
+menos problemático organizar las secuencias de animación ni su
+control.
+* La clase Coin, es el primer tipo de objeto que irá apareciendo
+par interactuar con el jugador, de momento se implementa solo una 
+moneda y esta cruzará la pantalla de forma constante fuera del
+alcance del personaje, aunque se modificara para que pase a la
+misma altura, de momento no hay interacción entre ambos objetos.
+* Se agregaron cuatro parámetros configurables.
+___________________________________________________________________
+Versión 13 Hilo de carga y Audio
+* Se implementó un SpriteSet para los fondos de pantallas y se
+programó la selección de fondos de acuerdo con el modo gráfico en
+todas las pantallas.
+* Se importó la clase Minim, con la cual se controlarán los sonidos
+del juego, tanto efectos como canciones.
+* Se implementó el hilo para cargar los efectos de sonido y música.
+En él se cargarán todos los recursos que impacten la carga inicial
+del juego. Esto obligó a incluir algunos mensajes adicionales, por 
+lo que también se actualizaron los archivos de configuración e
+idiomas.
+* Se actualizó el módulo PantCarga, para que se incluyan los 
+mensajes de progreso de la carga y se pueda controlar la 
+sincronización con el hilo de carga. Al terminar la carga hay un
+tiempo de espera de 3 segundos (no configurable al momento) para
+avanzar a la pantalla de intro.
+* Se modificó la clase Botón, para incluir el efecto de sonido del
+clic.
+* Se ajustaron los tamaños de botones en las pantallas de intro y
+configuración, esto porque algunos mensajes en español eran más
+anchos que los botones.
+* Se agregó un botón para regresar en todas las pantallas que de
+momento "no hacen nada", con ello se elimina la posibilidad de
+navegar por el juego usando los botones del mouse.
+* Se agregaron dos canciones, una para el intro del juego y otro
+para la pantalla de juego.
+* Se implementó en el módulo principal y el GameControl los métodos
+para reproducir la música.
+*Se implementó en PantGame el código para poder reiniciar el juego,
+específicamente el reloj se resetea, a futuro ahí se reiniciarán
+todas las variables relacionadas con el inicio de un nuevo juego.
+___________________________________________________________________
+Versión 12 Bitácora y Control de Cursor
+* Se implementó el módulo de Bitácora, para poder registrar datos
+de pruebas.
+* Se actualizó la clase ConfigFiles para configurar las pruebas.
+* Se implementó el manejo de tipografía para los elementos con
+texto dentro del juego.
+* Se implementó un método de control para los eventos de movimiento
+del mouse sobre botones, esto implicó modificar el módulo principal
+para incluir el manejador de eventos de movimiento. Adicionalmente
+en GameControl se implementó el manejador correspondiente y en los
+módulos de PantConfig y PantIntro, se implementó el manejador 
+correspondiente.
+*Se agregó el método isOver en la clase Boton para identifricar si
+el mouse se encuentra sobre el botón, independientemente si se
+realiza un clic o no.
+* En el caso de los botones se implementó el cambio de cursor del
+mouse por una mano, cuando el mouse se encuentre sobre alguno de
+los botones. Esto implicó una serie de ifs anidados.
+* Se añadió transparencia al borde de los botones para integrarlos
+mejor en las pantallas.
+___________________________________________________________________
+Versión 11 Reloj y HUD
+* Se implementó una clase Temporizador, la cual permite controlar
+procesos con duración de tiempo.
+* Derivado de la clase Temporizador, se implementó la clase Reloj,
+la cual utiliza un temporizador para contar segundos y minutos.
+* Se implementó el plano de HUD, contando con una imagen para los
+datos de la partida.
+___________________________________________________________________
+Versión 10 Animación
+* Se implementó una secuencia de animación para el personaje del
+juego. De momento se "congeló la posición del personaje.
+
+* Se implementó un modo de transparencia para las figuras de
+frente que pasen por encima del personaje, se dejó desactivado
+en forma de comentarios.
+
+* Se actualizó la clase Botón para permitir el  cambio de texto,
+no por el idioma sino para que contenga un texto distinto, esto
+por la necesidad de indicar cuál modo gráfico está activo.
+
+* Se actualizó la clase PantConfig para que cambie el texto del
+botón de modo gráfico.
+
+* Se agregaron en ConfigFiles los nuevos parámetros del personaje
+y sus animaciones.
+___________________________________________________________________
+Versión 09 Dados y generación aleatoria
+* Se implementó una clase Dado, la cual simula dados de n caras.
+Con ella se estarán generando eventos aleatorios para los sprites
+de fondo y frente.
+
+* Se adecuaron los sprites de imágenes de frente, ahora todas
+tienen las mismas medidas (200x250 pixeles) y por lo tanto están
+alineadas de forma correcta.
+
+* Se incluye un botón en la pantalla de configuración para poder
+conmutar el modo gráfico, entre sprites y figuras.
+
+* Se modificó PantGame para incluir la generación de valores
+aleatorios para el índice del sprite que corresponde a cada
+elemento del fondo y grente, con esto el juego tendrá mayor 
+variación, reduciendo la aparición de patrones repetitivos. Las
+modificaciones incluyeron los métodos graficaPlano, creaP2DArray 
+y muevePlano, ahora incluyen parámetros de Dado y vector de
+índices de figura.
+
+* Se actualizó el acrhivo de configuración para incluir los 
+siguientes parámetros:
+-nbg: número de imágenes de fondo disponibles
+-nfg: número de imágenes de frente disponibles
+-bgli: coordenada de límite izquierdo para el fondo
+-bgld: coordenada de límite derecho para el fondo
+-fgli: coordenada de límite izquierdo para el frente
+-fgld: coordenada de límite derecho para el frente
+-gmode: estado del modo gráfico ON para sprites, OFF para figuras
+___________________________________________________________________
+Versión 08 SpriteSet
+* Se agregó el módulo SpriteSet, el cual controlará grupos de 
+imágenes, es decir que puede funcionar como un repositorio de
+recursos gráficos o bien como secuencias básicas de animación.
+
+* Se actualizó el módulo PantGame, con la incorporación de dos
+objetos, ambos de la clase SpriteSet, almacenan las imágenes
+para el fondo y frente. Se modificó el método graficaPlano para
+poder graficar las imágenes en lugar de las figuras geométricas
+del modo básico.
+___________________________________________________________________
+Versión 07 Optimización Planos
+* Se agregaron registros al archivo de configuración:
+-bgdx,bgdy: controlan la velocidad de movimiento de los sprites
+del fondo.
+-fgdx,fgdy: controlan la velocidad de movimiento de los sprites
+del frente.
+-prdxu,prdyu: controlan la velocidad de movimiento de los 
+sprites del personaje cuando sube.
+-prdxd,prdyd: controlan la velocidad de movimiento de los 
+sprites del personaje cuando desciende.
+
+* Se reemplazaron los valores directos por las variables desde 
+el archivo de configuración para los valores de movimiento en 
+PantGame.
+
+* Se definieron vectores por categoría de uso para los puntos de
+los planos. Se implementaron los métodos necesarios para 
+procesar los vectores para instanciación, graficación y 
+movimiento. Esto reduce signifiativamente el tamaño del código.
+___________________________________________________________________
+Versión 06 Corredor infinito
+* Se implementó la clase Punto2D, para poder organizar los datos
+de coordenadas que estarán usándose para todos los objetos en 
+movimiento dentro del juego.
+* En PantGame se implementó la graficación por planos, 
+considerando cuatro de estos
+-Fondo: la simulación del corredor infinito parte de un truco
+visual, donde dos imágenes (al momento cuadros de colores) se
+desplazarán a la izquierda, al momento en que cada una de ellas
+"salga" de la pantalla, se reinicia su posición del lado derechp
+de la pantalla, manteniendo la ilusión de movimiento.
+-Nivel: en este plano se colocará al personaje principal, items,
+enemigos, aliados por rescatar y plataformas. Al momento se 
+muestra únicamente al personaje, en la forma de un círculo color 
+verde.
+-Frente: En este plano se colocarán objetos "por delante" como
+plantas, rocas, un vidrio etcétera, lo cual ayudará a dar la
+ilusión de estar dentro de un "túnel" o "corredor". Al momento
+son rectángulos de colores.
+-HUD: El plano donde aparecerán los datos que el jugador 
+necesita para saber el estado del juego, puede haber un contador
+de vidas, barra de vida, tiempo de juego acumulado, puntaje...
+Al momento es un rectángulo color gris en la parte superior de 
+la pantalla.
+
+* Se implementó el método gameProgress, el cual se encaragará de
+hacer los cálculos necesarios para controlar el juego. Al 
+momento solo se controla el movimiento de los elementos que
+crean el túnel, posteriormente se irán optimizando los códigos.
+___________________________________________________________________
+Versión 05 Archivo de configuración
+* Se agregó el módulo ConfigFiles, el cual permitirá guardar los
+parámetros del juego, mismos que podrán editarse para modificar
+características del juego sin tener que recompilar la aplicación
+o tener que abrirla para modificar valores.
+
+* Se agregó en data el archivo config.dat, el cual contendrá los
+parámetros configurables del juego. Al momento solo tendrá los de
+idioma activo y número de mensajes que cambian con el idioma.
+
+* Se modificaron los módulos: 
+-Principal: 
+-GameControl: 
+-PantConfig:
+___________________________________________________________________
+Versión 04 Localizacion
+* Se agregó el módulo Idiomas, el cual permitirá controlar la
+localización de mensajes y diálogos que el juego contenga en los
+idiomas español e inglés.
+
+* Se agregó la carpeta "data" dentro de la del proyecto, en ella se 
+estarán colocando los recursos del juego (imágenes, sonidos, videos
+y archivos de localizacion, entre otros).
+
+* Se agregaron los archivos esp.lang y eng.lang, los cuales 
+contienen todos los mensajes que el juego despliegue en los dos
+idiomas que al momento el juego soportará. El formato de cada 
+mensaje es el siguiente. El signo igual es obligatorio, puesto que
+funge como separador entre el código de mensaje y el mensaje mismo
+<codigomensaje>=<mensaje> 
+
+<codigomensaje> tiene el formato #0x, es decir que comienza con #
+seguido de un número consecutivo y el prefijo del componente al 
+cual se le definirá el mensaje.
+<mensaje> es el texto que se usará, no requiere comillas.
+
+
+* Se actualizaron los siguientes módulos y se especifican los 
+cambios efectuados en los mismos.
+-Proyecto_CVGS:Se incluyeron las declaraciones para el objeto de
+control de idiomas, el número de mensajes en esta versión es de 13,
+se irá actualizando en función de los nuevos mensajes o elementos 
+del juego que requieran uso de idiomas distintos.
+-Boton: Se modificó el tipo de dato del mensaje, pasando de String 
+a int, puesto que ahora se indicará el índice del mensaje 
+correspondiente. Además se cambió en el método display la forma de 
+acceder al texto correspondiente.
+-PantCarga: Se cambió el mensaje de título de pantalla por la 
+llamada al objeto de idiomas para mostrar el mensaje 
+correspondiente.
+-PantConfig: Se cambió el mensaje de título de pantalla por la 
+llamada al objeto de idiomas para mostrar el mensaje 
+correspondiente.
+-PantCreditos: Se cambió el mensaje de título de pantalla por la 
+llamada al objeto de idiomas para mostrar el mensaje 
+correspondiente.
+-PangtGame: Se cambió el mensaje de título de pantalla por la 
+llamada al objeto de idiomas para mostrar el mensaje 
+correspondiente.
+-PantInstruc: Se cambió el mensaje de título de pantalla por la 
+llamada al objeto de idiomas para mostrar el mensaje 
+correspondiente.
+-PantIntro: Se cambió el mensaje de título de pantalla por la 
+llamada al objeto de idiomas para mostrar el mensaje 
+correspondiente.
+-PantScore: Se cambió el mensaje de título de pantalla por la 
+llamada al objeto de idiomas para mostrar el mensaje 
+correspondiente.

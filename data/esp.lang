@@ -19,3 +19,17 @@
 #18msgsfxld=Cargando efectos de sonido
 #19msgmscld=Cargando música
 #20msgendld=Carga terminada
+#21msgvidld=Cargando videos
+#22difeasy=Fácil
+#23difnorm=Normal
+#24difhard=Difícil
+#25msglng=Idioma
+#26msggph=Gráficos
+#27msgdif=Dificultad
+#28plyrnm=Nombre del Jugador
+#29topnm=NOMBRE
+#30toptm=TIEMPO
+#31topsc=PUNTAJE
+#32pntpau=Pantalla de Pausa
+#33btnret=Continuar Juego
+#34btnext=Menu Principal

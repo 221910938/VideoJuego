@@ -1,7 +1,7 @@
 //Modulo Bitácora
-//elaborado por: Angel Palacios Mirafuentes
+//elaborado por: Rubén Dario Hernandez Mendo
 //fecha de creación: 4 de noviembre de 2022
-//fecha de ultima modificación: 4 de noviembre de 2022
+//fecha de ultima modificación: 2 de diciembre de 2022
 //comentario: Permite generar registros de información del funcionamiento del 
 //juego. Recomendable su uso para testing.
 class Bitacora{
@@ -32,6 +32,7 @@ class Bitacora{
     }  
   }
   
+  //permite agregar una cadena directo al archivo de bitácora
   void agregaDatosLn(String []s,int d[]){
     if(active){
       if(s.length==d.length)
@@ -69,4 +70,7 @@ class Bitacora{
       output.close();
     }  
   }
+  
+  //en esta parte se recomienda implementar los métodos de bitácora específicos
+  //a las pruebas que se requieran.
 }

@@ -1,41 +1,53 @@
 //Módulo Punto2D
-//elaborado por: Angel Palacios Mirafuentes
+//elaborado por: Rubén Dario Hernandez Mendo
 //fecha de creación: 14 de octubre de 2022
-//fecha de ultima modificación: 14 de octubre de 2022
+//fecha de ultima modificación: 5 de diciembre de 2022
 //comentario: se implementa una clase para par de coordenadas 2D
 class Punto2D{
-  int x;
-  int y;
+  int x;  //coordenada horizontal
+  int y;  //coordenada vertical
   
+  //Constructor: usa valores directos de cada coordenada
   Punto2D(int x,int y){
     this.x=x;
     this.y=y;
   }
-
-  Punto2D(Punto2D p)
-  {
-    this.x=p.getX();
-    this.y=p.getY();
+  
+  //Constructor: recibe otro punto para "copiarse"
+  Punto2D(Punto2D p){
+    x=p.getX();
+    y=p.getY();
   }
   
+  //devuelve coordenada x
   int getX(){
     return x;
   }
   
+  //devuelve coordenada y
   int getY(){
     return y;
   }
   
+  //establece coordenada x
   void setX(int x){
     this.x=x;
   }
   
+  //establece coordenada y
   void setY(int y){
     this.y=y;
   }
   
+  //mueve el par ordenado, usando valores sueltos
   void move(int dx,int dy){
     x+=dx;
     y+=dy;
+  }
+  
+  //mueve el par ordenado, con otro punto (uso para movimiento vectorizado)
+  void move(Punto2D p){
+    x+=p.getX();
+    y+=p.getY();
   }
 }

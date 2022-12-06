@@ -19,3 +19,17 @@
 #18msgsfxld=Loading sound effects
 #19msgmscld=Loading music
 #20msgendld=Loading ended
+#21msgvidld=Loading videos
+#22difeasy=Easy
+#23difnorm=Normal
+#24difhard=Hard
+#25msglng=Language
+#26msggph=Graphics
+#27msgdif=Difficulty
+#28plyrnm=Player's Name
+#29topnm=NAME
+#30toptm=TIME
+#31topsc=SCORE
+#32pntpau=Pause Screen
+#33btnret=Continue Game
+#34btnext=Main Menu
