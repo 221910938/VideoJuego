@@ -46,6 +46,7 @@ class PantSelecPer{
         if(cambiar.isClicked(x,y,b))
         {
           cf.per=!cf.per;
+          println(cf.per);
         }
     }
 }

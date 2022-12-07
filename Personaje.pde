@@ -24,16 +24,13 @@ class Personaje{
   boolean onhit;     //herida en progreso
   int maxhg;         //altura de salto tope
   String scoredata;  //datos para enviar a marcadores tope
+  String name;       //nombre del personaje
+  int fps;
+  boolean oneTime;
   
   //Constructor: se inicia todo el personaje
   Personaje(){
     per=new Punto2D(150,cf.flmax); //posición
-    //animaciones
-    sspr=new SpriteSet("sprites/per/movement/run/","per",".png",cf.nprc,cf.prfc,true,0);
-    ssjp=new SpriteSet("sprites/per/movement/jump/","jmp",".png",cf.nprj,cf.prfj,true,0);
-    ssfl=new SpriteSet("sprites/per/movement/fall/","fall",".png",cf.nprf,cf.prff,true,0);
-    ssht=new SpriteSet("sprites/per/movement/hit/","hit",".png",cf.nprh,cf.prfh,true,0);
-    ssdd=new SpriteSet("sprites/per/movement/die/","die",".png",cf.nprd,cf.prfd,true,0);
     tmp=new Temporizador(cf.nprh*cf.prfh);
     //datos de control
     hp=hpmax=cf.hpmax;
@@ -48,12 +45,17 @@ class Personaje{
     onjmp=false;
     onfal=false;
     onhit=false;
+    oneTime=true;
   }
   
   //control de graficado
   void display(){
     ellipseMode(RADIUS);
     imageMode(CENTER);
+    if (oneTime) {
+      cargarTexturas();
+      oneTime=false;
+    }
     animationStatus();
     //se grafican los datos de colisionadores
     if(cf.datad){
@@ -64,6 +66,22 @@ class Personaje{
       stroke(255,255,0);
       line(0,cf.flmax,800,cf.flmax);
     }
+  }
+
+  void cargarTexturas(){
+    if(cf.per){
+      name="per";
+      fps=24;
+    }else{
+      name="per1";
+      fps=2;
+    } 
+    println(cf.per,name,fps);
+    sspr=new SpriteSet("sprites/"+name+"/movement/run/","per",".png",fps,cf.prfc,true,0);
+    ssjp=new SpriteSet("sprites/"+name+"/movement/jump/","jump",".png",fps,cf.prfj,true,0);
+    ssfl=new SpriteSet("sprites/"+name+"/movement/fall/","fall",".png",fps,cf.prff,true,0);
+    ssht=new SpriteSet("sprites/"+name+"/movement/hit/","hit",".png",fps,cf.prfh,true,0);
+    ssdd=new SpriteSet("sprites/"+name+"/movement/die/","die",".png",fps,cf.prfd,true,0); 
   }
   
   //control de animación del personaje

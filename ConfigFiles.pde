@@ -80,6 +80,7 @@ class ConfigFiles{
   
   //Constructor: Abre el archivo y carga los datos en las variables correspondientes
   ConfigFiles(){
+    println(per);
     file=loadStrings("config.dat");
     loadConfig();
   }
