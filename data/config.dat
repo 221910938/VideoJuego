@@ -15,8 +15,8 @@
 #bgld=1200
 #fgli=-100
 #fgld=900
-#nprc=6
-#prfc=5
+#nprc=24
+#prfc=1
 #nprj=5
 #prfj=7
 #nprf=2
@@ -26,7 +26,7 @@
 #nprd=4
 #prfd=8
 #fntname=FiraCode Nerd Font
-#fntstd=22
+#fntstd=14
 #fntbig=36
 #fntkey=42
 #logact=OFF

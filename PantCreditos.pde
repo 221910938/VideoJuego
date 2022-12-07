@@ -18,7 +18,7 @@ class PantCreditos{
   void display(){
     background(0);
     stroke(255);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
     if(!movieactive){ //inicia la reproducción
       mvcred.play();
       movieactive=true;

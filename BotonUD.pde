@@ -31,7 +31,7 @@ class BotonUD{
     if(cf.gmode) image(btn,cx,cy,an,al);
     //else rect(cx,cy,an,al);
     fill(255);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
     text(char(t),cx,cy);
   }
   

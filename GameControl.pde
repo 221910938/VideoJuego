@@ -9,6 +9,7 @@ class GameControl{
   PantCarga pncrg;      //Pantalla de Carga
   PantIntro pnint;      //Pantalla de Intro o Menú Principal
   PantGame pngme;       //Pantalla de Juego 
+  PantSelecPer pntselectper; //Pantalla de selección de personaje
   PantConfig pncfg;     //Pantalla de Configuración
   PantCreditos pncrd;   //Pantalla de Créditos
   PantInstruc pnins;    //Pantalla de Instrucciones
@@ -30,6 +31,7 @@ class GameControl{
     pnins=new PantInstruc();
     pnscr=new PantScore();
     pnpau=new PantPausa();
+    pntselectper=new PantSelecPer();
     pantact=PNCRG;
     musicon=false;
     dfc=DFCNR;
@@ -54,7 +56,9 @@ class GameControl{
       case PNSCR:  pnscr.display();
                    break;
       case PNPAU:  pnpau.display();
-                   break;             
+                   break;
+      case PNSELP: pntselectper.display();
+                   break;       
     }
   }
   
@@ -78,7 +82,9 @@ class GameControl{
       case PNCFG: pncfg.mouseControl(x,y,b);
                   break;
       case PNPAU: pnpau.mouseControl(x,y,b);
-                  break;            
+                  break; 
+      case PNSELP:pntselectper.mouseControl(x,y,b);
+                  break;           
     }
   }
   

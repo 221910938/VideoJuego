@@ -45,7 +45,7 @@ class Slime
   }
   
 
-    void mover(){
+  void mover(){
     slime.setX(((slime.getX()>-75)?slime.getX()-cf.spdcn:900));
     colisionadorSlime.moverCol(slime);
   }

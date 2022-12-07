@@ -28,7 +28,7 @@ class PantIntro{
     if(cf.gmode) background(gc.imgfondo);
     else background(0,150,0);
     stroke(255);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
     text(idi.mensaje(11),400,100);
     btncfg.display();
     btncrd.display();
@@ -54,7 +54,7 @@ class PantIntro{
     //iniciar juego  
     if(btngme.isClicked(x,y,b)){
       gc.musicManager(MSCOFF);
-      gc.setPantAct(PNGME);
+      gc.setPantAct(PNSELP);
     }  
     //Instrucciones
     if(btnins.isClicked(x,y,b))
@@ -70,6 +70,5 @@ class PantIntro{
   void mouseControl(int x,int y){
     cursor((btncfg.isOver(x,y)||btncrd.isOver(x,y)||btnscr.isOver(x,y)||
             btngme.isOver(x,y)||btnins.isOver(x,y)||btnext.isOver(x,y))?HAND:ARROW); 
-  
   }
 }

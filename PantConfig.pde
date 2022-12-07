@@ -33,14 +33,14 @@ class PantConfig{
     if(cf.gmode) background(gc.imgfondo);
     else background(150,150,0);
     stroke(255);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
     text(idi.mensaje(7),400,100);
     textAlign(LEFT,CENTER);
     text(idi.mensaje(25),125,350);
     text(idi.mensaje(26),125,450);
     text(idi.mensaje(27),125,550);
     text(idi.mensaje(28),125,250);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
     btnidi.display();
     btngmd.display();
     btnsav.display();

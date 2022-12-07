@@ -53,7 +53,7 @@ class Reloj{
   
   //grafica el estado del reloj, en formato minutos:segundos
   void display(int x,int y){
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
     stroke(0);
     fill(0);
     textSize(cf.fntbig);

@@ -22,7 +22,8 @@ class PantCarga{
     if(cf.gmode) background(gc.imgfondo);
     else background(150,0,0);
     stroke(255);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
+    fill(0,0,0);
     text(idi.mensaje(6),400,100);
     imageMode(CENTER);
     ssload.display(400,400,200,200);

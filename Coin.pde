@@ -6,7 +6,6 @@
 class Coin{
   Punto2D pos;      //posición en pantalla de la moneda
   Colisionador cls; //colisionador de la moneda
-  SpriteSet sscn;   //imágenes para la animación de cobro de la moneda
   Dado d;           //permite generar aleatoriamente la nueva posición de la moneda
   boolean active;   //indica si la moneda está activa
   boolean oncash;   //indica si la moneda está siendo cobrada
@@ -15,7 +14,6 @@ class Coin{
   Coin(int x,int y){
     pos=new Punto2D(x,y);
     cls=new Colisionador(pos,cf.cclsz,new Punto2D(0,0),new Punto2D(0,0));
-    sscn=new SpriteSet("sprites/coin/cash/","cash",".png",cf.cnfr,cf.cndr,true,0);
     d=new Dado(2);
     active=true;
     oncash=false;
@@ -29,9 +27,6 @@ class Coin{
       if(cf.gmode)
         if(!oncash)
           image(imgcoin,pos.getX(),pos.getY(),75,75);
-        else
-          //en revisión esto por el conflito de aniación y estado de activo
-          sscn.display(pos.getX(),pos.getY(),75,75);
       else{
         fill(238,169,59);
         stroke(234,152,19);
@@ -65,7 +60,6 @@ class Coin{
   void cobrar(){
     oncash=true;
     sfxcash.trigger();
-    sscn.activateOneTime();
     cls.deactivate();
   }
 }

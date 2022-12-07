@@ -19,7 +19,7 @@ class PantPausa{
     if(cf.gmode) background(gc.imgfondo);
     else background(0,150,150);
     stroke(255);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
     text(idi.mensaje(32),400,100);
     btnret.display();
     btnext.display();

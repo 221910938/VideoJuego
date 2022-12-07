@@ -15,6 +15,7 @@ final int PNCRD=4;        //pantalla de creditos, identificador
 final int PNINS=5;        //pantalla de instrucciones, identificador
 final int PNSCR=6;        //pantalla de mejores puntajes, identificador
 final int PNPAU=7;        //pantalla de pausa, identificador
+final int PNSELP=8;        //pantalla de fin de juego, identificador
 final int IDESP=0;        //idioma español, identificador
 final int IDING=1;        //idioma inglés, identificador
 final int STRUN=0;        //estado de correr, identificador

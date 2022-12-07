@@ -6,22 +6,21 @@
 //juego.
 class PantGame{
   Punto2D bg[];              //posición de los fondos
-  Punto2D fg[];              //posición de los objetos en primer plano
   int fbg[];                 //coordenadas de los fondos 
-  int ffg[];                 //coordenadas de objetos en primer plano
   SpriteSet ssbg;            //repositorio de imágenes de fondos
-  SpriteSet ssfg;            //repositorio de imágenes en primer plano
   Personaje per;             //personaje 
   ArrayList <Coin> monedas;  //grupo de monedas en juego
   Plataforma plt;            //plataforma que aparece cada cierto tiempo
   Bomba b;                   //controla la bomba que aparece
   Curador cur;               //controla el curador que aparece 
+  Item arbol;
+  Item roca;
   PImage imghud;             //imagen del HUD 
   Dado dbg;                  //dado para seleccionar un nuevo fondo
-  Dado dfg;                  //dado para seleccionar un nuevo elemento en primer plano
   Dado dcoin;                //dado para generar una nueva moneda
   Reloj rlj;                 //lleva el tiempo total de juego
   boolean rst;               //indica si el juego debe reiniciarse
+  Slime slime;
   
   //Constructor: instancia todos los elementos y lo deja listo para iniciar
   PantGame(){
@@ -29,14 +28,15 @@ class PantGame{
     bg=new Punto2D[cf.nbg];
     fbg=new int[cf.nbg];
     creaP2DArray(bg,fbg,dbg,400,400,800,0);
-    dfg=new Dado(cf.nfg);
-    fg=new Punto2D[cf.nfg];
-    ffg=new int[cf.nfg];
-    creaP2DArray(fg,ffg,dfg,100,675,200,0);
+
+    arbol= new Item("fg0.png",700,600,450,350);
+    roca= new Item("fg1.png",200,700,250,200);
+
+
     ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,6,false,0);
-    ssfg=new SpriteSet("sprites/fg/","fg",".png",cf.nfg,6,false,0);
     imghud=loadImage("sprites/HUD/hud.png");
     per=new Personaje();
+    slime=new Slime(500,700);
     monedas=new ArrayList <Coin>();
     plt=new Plataforma(1200,600,800,10);
     b=new Bomba(975,500);
@@ -90,6 +90,9 @@ class PantGame{
     plt.display();
     b.display();
     cur.display();
+    slime.display();
+    arbol.display();
+    roca.display();
   }
   
   //grafica las monedas del juego
@@ -104,7 +107,6 @@ class PantGame{
     imageMode(CENTER);
     stroke(0);
     fill(200,200,0);
-    graficaPlano(fg,ssfg,ffg,200,250,true,true);
   }
   
   //graficación de la barra superior con la información del juego
@@ -112,9 +114,7 @@ class PantGame{
     rectMode(CENTER);
     imageMode(CENTER);
     if(cf.gmode){
-      tint(255,128);
       image(imghud,400,60);
-      noTint();
     }
     else{
       stroke(0);
@@ -123,17 +123,19 @@ class PantGame{
     }  
     fill(0);
     //graficación de los datos correspondientes
-    per.drawLifeBar(150,30);
-    per.drawScore(400,30);
-    rlj.display(650,60);
+    per.drawLifeBar(230,50);
+    per.drawScore(440,48);
+    rlj.display(720,50);
   }
   
   //control de avance del juego, a razón de un frame
   void gameProgress(){
     if(!per.isDead()){ //con el juego activo
       muevePlano(bg,fbg,dbg,cf.bgdx,cf.bgdy,cf.bgli,cf.bgld);  
-      muevePlano(fg,ffg,dfg,cf.fgdx,cf.fgdy,cf.fgli,cf.fgld); 
       mueveMonedas();
+      slime.mover();
+      roca.mover();
+      arbol.mover();
       if(plt.isActive())
       plt.moverPlt();
       b.move();
@@ -206,6 +208,18 @@ class PantGame{
     if(per.cls.isColision(cur.cls)){
       per.curar();
       cur.curar();
+    }
+
+    if(per.cls.isColision(slime.colisionadorSlime)){
+      per.herir();
+      slime.toggleActive();
+      slime=new Slime(850,700);
+      if(per.isDead()){
+        String scoredata;
+        rlj.detenReloj();
+        scoredata=rlj.getTime()+";"+per.getScore();
+        per.setScoreData(scoredata);
+      }
     }
     //revisión contra bombas
     if(per.cls.isColision(b.cls)){

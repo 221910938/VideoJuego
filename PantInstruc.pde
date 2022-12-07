@@ -29,7 +29,7 @@ class PantInstruc{
     if(cf.gmode) background(gc.imgfondo);
     else background(color(0,150,150));
     fill(255);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
     textSize(cf.fntstd);
     text(idi.mensaje(10),400,100);
     fill(0);

@@ -64,7 +64,6 @@ class Personaje{
       stroke(255,255,0);
       line(0,cf.flmax,800,cf.flmax);
     }
-    drawLifeBar(150,30);
   }
   
   //control de animación del personaje
@@ -252,7 +251,7 @@ class Personaje{
     fill(0);
     stroke(0);
     textSize(cf.fntbig);
-    text("$"+score,x,y);
+    text(score,x,y);
     textSize(cf.fntstd);
   }
   

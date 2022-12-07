@@ -18,7 +18,7 @@ class PantScore{
     if(cf.gmode) background(gc.imgfondo);
     else background(150);
     stroke(255);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER,CENTER); fill(0,0,0);
     text(idi.mensaje(12),400,100);
     ts.displayData();
     btnret.display();

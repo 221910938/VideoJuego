@@ -76,6 +76,7 @@ class ConfigFiles{
   int topsc;      //número de puntajes tope
   float sfxgn;    //volumen de efectos de sonido
   float mscgn;    //volumen de música
+  boolean per;
   
   //Constructor: Abre el archivo y carga los datos en las variables correspondientes
   ConfigFiles(){
@@ -155,6 +156,7 @@ class ConfigFiles{
       if(isData("topsc",i))    topsc=loadData(i);
       if(isData("sfxgn",i))    sfxgn=loadFloatData(i);
       if(isData("mscgn",i))    mscgn=loadFloatData(i);
+      if(isData("per",i))     per=loadBoolData(i);
     }
   }
   
@@ -255,6 +257,7 @@ class ConfigFiles{
     addSave("topsc",topsc);
     addSave("sfxgn",sfxgn);
     addSave("mscgn",mscgn);
+    addSave("per",per);
     file=split(save,';');
     saveStrings("data/config.dat",file);
   }
