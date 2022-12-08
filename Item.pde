@@ -11,7 +11,7 @@ class Item
       altura=h;
       ancho=w;
         item=new Punto2D(x,y);
-        imgItem= loadImage("sprites/fg/"+img);
+        imgItem= loadImage("sprites/"+img);
         colisionadorItem=new Colisionador(item,70,new Punto2D(0,0),new Punto2D(250,800));
     }
 

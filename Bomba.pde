@@ -28,14 +28,14 @@ class Bomba{
     imageMode(CENTER);
     ellipseMode(CENTER);
     if(active){
-      if(cf.gmode)
-        if(!onxpl)//graficando en caso de que haya o no explosión
+      if(cf.gmode){
+        if(!onxpl){//graficando en caso de que haya o no explosión
           ssbmb.display(pos.getX(),pos.getY(),75,75);
-        else{
+        }else{
           ssexp.display(pos.getX(),pos.getY(),75,75);
           if(ssexp.isEndOnTime()) toggleActive();
         }  
-      else{
+      }else{
         fill(0);
         stroke(0);
         circle(pos.getX(),pos.getY(),37);

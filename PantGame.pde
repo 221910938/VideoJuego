@@ -29,11 +29,11 @@ class PantGame{
     fbg=new int[cf.nbg];
     creaP2DArray(bg,fbg,dbg,400,400,800,0);
 
-    arbol= new Item("fg0.png",700,600,450,350);
-    roca= new Item("fg1.png",200,700,250,200);
-
+    arbol= new Item("fg/fg0.png",700,600,450,350);
+    roca= new Item("fg/fg1.png",200,700,250,200);
 
     ssbg=new SpriteSet("sprites/bg/","bg",".png",cf.nbg,6,false,0);
+    
     imghud=loadImage("sprites/HUD/hud.png");
     per=new Personaje();
     slime=new Slime(500,700);

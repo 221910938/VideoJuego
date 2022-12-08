@@ -11,15 +11,17 @@ class PantIntro{
   Boton btngme;  //Botón para iniciar un juego
   Boton btnins;  //Botón para las instrucciones de juego
   Boton btnext;  //Botón para salir del juego
-  
+  Item imgfondo; //Imagen de fondo
+
   //Constructor: Solo inicializa los botones
   PantIntro(){
-    btncfg=new Boton(400,200,250,60,0);
-    btncrd=new Boton(400,300,250,60,1);
-    btnscr=new Boton(400,400,250,60,2);
-    btngme=new Boton(400,500,250,60,3);
-    btnins=new Boton(400,600,250,60,4);
-    btnext=new Boton(400,700,250,60,5);
+    btncfg=new Boton(150,300,250,60,0);
+    btncrd=new Boton(150,400,250,60,1);
+    btnscr=new Boton(150,500,250,60,2);
+    imgfondo=new Item("fondo.png",400,400,200,200);
+    btnins=new Boton(650,350,250,60,4);
+    btnext=new Boton(650,450,250,60,5);
+    btngme=new Boton(400,550,250,60,3);
   }
   
   //se grafican los botones
@@ -30,6 +32,7 @@ class PantIntro{
     stroke(255);
     textAlign(CENTER,CENTER); fill(0,0,0);
     text(idi.mensaje(11),400,100);
+    imgfondo.display();
     btncfg.display();
     btncrd.display();
     btnscr.display();
