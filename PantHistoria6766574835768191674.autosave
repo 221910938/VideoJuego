@@ -1,0 +1,57 @@
+class PantHistoria{
+  SpriteSet ssload;
+  //SpriteSet ssMama;//animación del corredor
+  PImage ssMama;
+  Temporizador tmpidle;  //tiempo de espera tras el final de la carga
+  int msg;               //mensaje específico de progreso
+  boolean loading;       //indica si la carga está en proceso
+  Boton btnret;
+  
+  //Constructor: carga la animación del corredor y prepara la carga de recursos
+  PantHistoria(){
+    ssload=new SpriteSet("sprites/per/movement/run/","per",".png",cf.nprc,cf.prfc,true,0);
+    //ssMama=new SpriteSet("sprites/per/movement/run/","per2",".png",cf.nprc,cf.prfc,true,0);
+     ssMama=loadImage("sprites/per/movement/run/mama.png");
+    tmpidle=new Temporizador(180);
+    loading=true;
+    btnret=new Boton(300,500,150,30,26);
+  }
+  
+  //muestra el estado actual del proceso de carga
+  void display(){
+    if(cf.gmode) background(gc.imgCasa);
+    else background(150,0,0);
+    stroke(255);
+    textAlign(CENTER,CENTER); fill(0,0,0);
+    fill(0,0,0);
+    text(idi.mensaje(6),400,100);
+    imageMode(CENTER);
+    ssload.display(350,300,200,200);
+    image(ssMama,550,300,200,200);
+    text(idi.mensaje(msg),400,600);
+    btnret.display();
+    text("Ve por tortillas",450,500);
+    if(!loading && !tmpidle.isActive())
+      tmpidle.activate();
+    if(tmpidle.isActive())
+      tmpidle.coolingDown();
+    if(tmpidle.isOff())
+      gc.setPantAct(PNINT);
+  }
+
+ void mouseControl(int x,int y,int b){
+    //Regresar al juego
+    if(btnret.isClicked(x,y,b)){
+      mscgame.loop();
+      gc.setPantAct(PNSELP);
+    }  
+    
+  }
+  
+  //Control del cursor, sobre botones
+  void mouseControl(int x,int y){
+    cursor((btnret.isOver(x,y))?HAND:ARROW);  
+  }
+}
+
+    

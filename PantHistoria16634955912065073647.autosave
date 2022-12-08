@@ -1,0 +1,36 @@
+class PantHistoria{
+  SpriteSet ssload;
+  //SpriteSet ssMama;//animación del corredor
+  PImage ssMama;
+  Temporizador tmpidle;  //tiempo de espera tras el final de la carga
+  int msg;               //mensaje específico de progreso
+  boolean loading;       //indica si la carga está en proceso
+  
+  //Constructor: carga la animación del corredor y prepara la carga de recursos
+  PantHistoria(){
+    ssload=new SpriteSet("sprites/per/movement/run/","per",".png",cf.nprc,cf.prfc,true,0);
+    //ssMama=new SpriteSet("sprites/per/movement/run/","per2",".png",cf.nprc,cf.prfc,true,0);
+     ssMama=loadImage("sprites/per/movement/run/mama.png");
+    tmpidle=new Temporizador(180);
+    loading=true;
+  }
+  
+  //muestra el estado actual del proceso de carga
+  void display(){
+    if(cf.gmode) background(gc.imgCasa);
+    else background(150,0,0);
+    stroke(255);
+    textAlign(CENTER,CENTER); fill(0,0,0);
+    fill(0,0,0);
+    text(idi.mensaje(6),400,100);
+    imageMode(CENTER);
+    ssload.display(400,400,200,200);
+    text(idi.mensaje(msg),400,600);
+    if(!loading && !tmpidle.isActive())
+      tmpidle.activate();
+    if(tmpidle.isActive())
+      tmpidle.coolingDown();
+    if(tmpidle.isOff())
+      gc.setPantAct(PNINT);
+  }
+}
