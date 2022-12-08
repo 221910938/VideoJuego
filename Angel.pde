@@ -55,7 +55,7 @@ Movie mvcred;             //película de los créditos
 void setup(){
   size(800,800);
   frameRate(60);
-  surface.setTitle("UTVT Runner");
+  surface.setTitle("IDGS102");
   imgicon=loadImage("sprites/per/movement/run/per0.png");
   sspbg=new SpriteSet("sprites/scrbg/","scrbg",".jpg",9,6,false,0);
   surface.setIcon(imgicon);

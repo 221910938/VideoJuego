@@ -74,7 +74,7 @@ class Personaje{
       fps=24;
     }else{
       name="per1";
-      fps=2;
+      fps=4;
     } 
     println(cf.per,name,fps);
     sspr=new SpriteSet("sprites/"+name+"/movement/run/","per",".png",fps,cf.prfc,true,0);
