@@ -7,23 +7,28 @@
 //principal
 class GameControl{
   PantCarga pncrg;      //Pantalla de Carga
+  
   PantIntro pnint;      //Pantalla de Intro o Menú Principal
   PantGame pngme;       //Pantalla de Juego 
   PantSelecPer pntselectper; //Pantalla de selección de personaje
+  
   PantConfig pncfg;     //Pantalla de Configuración
   PantCreditos pncrd;   //Pantalla de Créditos
   PantInstruc pnins;    //Pantalla de Instrucciones
   PantScore pnscr;      //Pantalla de Mejores Puntajes
   PantPausa pnpau;      //Pantalla de Pausa
+  PantHistoria pnhist;      //Pantalla de Carga
   int pantact;          //indica cuál es la pantalla activa
   int dfc;              //indica cuál es la dificultad actual de la partida
   boolean musicon;      //indica si la música está activa
-  PImage imgfondo;      //imagen de fondo
+  PImage imgfondo;  
+  PImage imgCasa;      //imagen de fondo
   
   //Constructor: inicializa todas las pantallas y los valores por default que
   //se requieren
   GameControl(){
     pncrg=new PantCarga();
+    
     pnint=new PantIntro();
     pngme=new PantGame();
     pncfg=new PantConfig();
@@ -32,10 +37,12 @@ class GameControl{
     pnscr=new PantScore();
     pnpau=new PantPausa();
     pntselectper=new PantSelecPer();
+    pnhist=new PantHistoria();
     pantact=PNCRG;
     musicon=false;
     dfc=DFCNR;
     imgfondo=loadImage("sprites/back.png");
+    imgCasa=loadImage("sprites/scrbg5.jpg");
   }
   
   //controla la graficación en función de cual es la plantalla activa
@@ -58,6 +65,8 @@ class GameControl{
       case PNPAU:  pnpau.display();
                    break;
       case PNSELP: pntselectper.display();
+                   break;   
+      case PNHIST: pnhist.display();
                    break;       
     }
   }
@@ -84,7 +93,9 @@ class GameControl{
       case PNPAU: pnpau.mouseControl(x,y,b);
                   break; 
       case PNSELP:pntselectper.mouseControl(x,y,b);
-                  break;           
+                  break;  
+      case PNHIST:pnhist.mouseControl(x,y,b);
+                  break;         
     }
   }
   
@@ -97,6 +108,7 @@ class GameControl{
                   break;
       case PNPAU: pnpau.mouseControl(x,y);
                   break;
+      
     }
   }
   

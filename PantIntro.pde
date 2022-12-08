@@ -57,7 +57,8 @@ class PantIntro{
     //iniciar juego  
     if(btngme.isClicked(x,y,b)){
       gc.musicManager(MSCOFF);
-      gc.setPantAct(PNSELP);
+      //gc.setPantAct(PNSELP);
+      gc.setPantAct(PNHIST);
     }  
     //Instrucciones
     if(btnins.isClicked(x,y,b))
